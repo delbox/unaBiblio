@@ -12,7 +12,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Permite CORS en todos los endpoints
-                        .allowedOrigins("http://localhost:4200") // Origen permitido
+                        .allowedOrigins("http://localhost:4200") // Origen permitido (el frontend de Angular)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos HTTP permitidos
                         .allowedHeaders("*"); // Permitir todos los headers
             }
