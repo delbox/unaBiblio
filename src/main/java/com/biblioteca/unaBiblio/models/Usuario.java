@@ -11,6 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 
 
@@ -31,6 +34,7 @@ public class Usuario {
 	
 	
 	@Column(name = "cedula", length = 10)
+	@JsonProperty("usuario")
 	private String usuario;
 	
 	
