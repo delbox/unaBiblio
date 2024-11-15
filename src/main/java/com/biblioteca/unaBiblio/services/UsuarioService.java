@@ -26,7 +26,7 @@ public class UsuarioService {
     public List<UsuarioDTO> getAllUsuarios() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
-            .map(b -> new UsuarioDTO(b.getId_usuario(),b.getCedula(),b.getContrasena(),b.getFacultad(),b.getBiblioteca().getId_biblioteca()))
+            .map(b -> new UsuarioDTO(b.getId_usuario(),b.getUsuario(),b.getContrasena(),b.getFacultad(),b.getBiblioteca().getId_biblioteca()))
             .collect(Collectors.toList());
     }
     
@@ -35,7 +35,7 @@ public class UsuarioService {
     	
     	Usuario usuario = new Usuario();
     	
-    	usuario.setCedula(usuarioDTO.getCedula());
+    	usuario.setUsuario(usuarioDTO.getUsuario());
     	usuario.setContrasena(usuarioDTO.getContrasena());
     	usuario.setFacultad(usuarioDTO.getFacultad());
     	
@@ -55,7 +55,7 @@ public class UsuarioService {
     			.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     	
     	//Actualizar los campos del usuario
-    	usuarioExistente.setCedula(usuarioDTO.getCedula());
+    	usuarioExistente.setUsuario(usuarioDTO.getUsuario());
     	usuarioExistente.setContrasena(usuarioDTO.getContrasena());
     	usuarioExistente.setFacultad(usuarioDTO.getFacultad());
     	

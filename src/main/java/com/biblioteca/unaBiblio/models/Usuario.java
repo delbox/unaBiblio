@@ -1,6 +1,5 @@
 package com.biblioteca.unaBiblio.models;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +31,7 @@ public class Usuario {
 	
 	
 	@Column(name = "cedula", length = 10)
-	private String cedula;
+	private String usuario;
 	
 	
 	@Column(name = "contrasena", length = 10)

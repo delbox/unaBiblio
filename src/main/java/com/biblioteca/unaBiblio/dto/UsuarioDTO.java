@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UsuarioDTO {
     private int idUsuario;
-    private String cedula;
+    private String usuario;
     private String contrasena;
     private String facultad;
     private int idBiblioteca;
@@ -20,7 +20,7 @@ public class UsuarioDTO {
 
     public UsuarioDTO(Usuario usuario) {
         this.idUsuario = usuario.getId_usuario();
-        this.cedula = usuario.getCedula();
+        this.usuario = usuario.getUsuario();
         this.contrasena = usuario.getContrasena();
         this.facultad = usuario.getFacultad();
         this.idBiblioteca = usuario.getBiblioteca().getId_biblioteca();
