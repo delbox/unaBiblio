@@ -1,4 +1,6 @@
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\AppConfig.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\AlumnoController.java
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\AuthController.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\BibliotecaController.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\BibliotecarioController.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\LibroController.java
@@ -14,7 +16,10 @@ C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\bibliote
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Biblioteca.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Bibliotecario.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Libro.java
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\LoginRequest.java
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\LoginResponse.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\PrestamoLibro.java
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Rol.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Usuario.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\AlumnoRepository.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\BibliotecaRepository.java

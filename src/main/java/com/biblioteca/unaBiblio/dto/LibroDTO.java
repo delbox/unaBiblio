@@ -12,19 +12,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LibroDTO {
-    private int idLibro;
-    private String nombreLibro;
+    private int idlibro;
+    private String descripcion;
     private String autor;
     private String editorial;
-    private int anio_publicacion;
+    private int aniopublicacion;
+    private String codigoQr;
+    private Boolean estado;
     private int idBiblioteca;
 
     public LibroDTO(Libro libro) {
-        this.idLibro =  libro.getIdLibro();
-        this.nombreLibro = libro.getNombreLibro();
+        this.idlibro =  libro.getIdlibro();
+        this.descripcion = libro.getDescripcion();
         this.autor = libro.getAutor();
         this.editorial = libro.getEditorial();
-        this.anio_publicacion = libro.getAnioPublicacion();
-        this.idBiblioteca = libro.getBiblioteca().getId_biblioteca();
+        this.aniopublicacion = libro.getAnioPublicacion();
+        this.codigoQr = libro.getCodigoQr();
+        this.estado = libro.getEstado();
+        this.idBiblioteca = libro.getBiblioteca().getIdbiblioteca();
     }
 }

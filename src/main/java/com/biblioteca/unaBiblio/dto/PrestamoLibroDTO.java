@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.dto;
+/*package com.biblioteca.unaBiblio.dto;
 
 import java.util.Date;
 
@@ -33,4 +33,4 @@ public class PrestamoLibroDTO {
         this.idLibro = prestamoLibro.getLibro().getIdLibro();
         this.idBibliotecario = prestamoLibro.getBibliotecario().getIdBibliotecario();
     }
-}
+}*/

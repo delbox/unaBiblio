@@ -20,7 +20,7 @@ public class BibliotecaService {
     public List<BibliotecaDTO> getAllBibliotecas() {
         List<Biblioteca> bibliotecas = bibliotecaRepository.findAll();
         return bibliotecas.stream()
-            .map(b -> new BibliotecaDTO(b.getId_biblioteca(), b.getFacultad(), b.getEstado()))
+            .map(b -> new BibliotecaDTO(b.getIdbiblioteca(), b.getDescripcion(), b.getEstado()))
             .collect(Collectors.toList());
     }
     
@@ -29,7 +29,8 @@ public class BibliotecaService {
     	Biblioteca biblioteca = new Biblioteca();
     	
     	//Aqui se mapea los campos del DTO a la entidad
-    	biblioteca.setFacultad(bibliotecaDTO.getFacultad());
+    	biblioteca.setDescripcion(bibliotecaDTO.getDescripcion());
+    	
     	biblioteca.setEstado(bibliotecaDTO.getEstado());
     	
     	//Guarda la entidad en el repositorio
@@ -45,7 +46,8 @@ public class BibliotecaService {
                 .orElseThrow(() -> new ResourceNotFoundException("Biblioteca no encontrada con id: " + id));
 
         // Actualizar los campos de la biblioteca
-        bibliotecaExistente.setFacultad(bibliotecaDTO.getFacultad());
+        bibliotecaExistente.setDescripcion(bibliotecaDTO.getDescripcion());
+        
         bibliotecaExistente.setEstado(bibliotecaDTO.getEstado());
 
         // Guardar la biblioteca actualizada en la base de datos

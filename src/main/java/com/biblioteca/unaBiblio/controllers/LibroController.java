@@ -3,6 +3,7 @@ package com.biblioteca.unaBiblio.controllers;
 import java.util.List;
 
 import com.biblioteca.unaBiblio.dto.LibroDTO;
+import com.biblioteca.unaBiblio.models.Libro;
 import com.biblioteca.unaBiblio.services.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,13 @@ public class LibroController {
     public ResponseEntity<Void> eliminarLibro(@PathVariable int id) {
         libroService.eliminarLibro(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+  //Agregar ruta de libro por id
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Libro> obtenerLibroPorId(@PathVariable int id) {
+        Libro libro = libroService.obtenerLibroPorId(id);
+        return ResponseEntity.ok(libro);
     }
 
 }

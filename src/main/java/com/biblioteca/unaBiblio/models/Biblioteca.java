@@ -25,11 +25,12 @@ public class Biblioteca {
 	//Definicion de los campos de Biblioteca
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_biblioteca;
+	@Column(name = "idbiblioteca", nullable = false)
+	private int idbiblioteca;
 	
 	
-	@Column(name = "facultad", length = 200, nullable = false)
-	private String facultad;
+	@Column(name = "descripcion", length = 200, nullable = false)
+	private String descripcion;
 	
 	
 	@Column(name = "estado", nullable = false)

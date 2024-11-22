@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.dto;
+/*package com.biblioteca.unaBiblio.dto;
 
 import com.biblioteca.unaBiblio.models.Bibliotecario;
 import lombok.AllArgsConstructor;
@@ -25,4 +25,4 @@ public class BibliotecarioDTO {
         this.idBiblioteca = bibliotecario.getBiblioteca().getId_biblioteca();
         this.idUsuario = bibliotecario.getUsuario().getId_usuario();
     }
-}
+}*/

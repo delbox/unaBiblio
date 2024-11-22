@@ -1,5 +1,6 @@
 package com.biblioteca.unaBiblio.dto;
 
+import com.biblioteca.unaBiblio.models.Rol;
 import com.biblioteca.unaBiblio.models.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,18 +12,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDTO {
-    private int idUsuario;
+    private int idusuario;
+    private String nombre;
+    private String apellido;
     private String usuario;
-    private String contrasena;
-    private String facultad;
-    private int idBiblioteca;
+    private String password;
+    private String rol;
+    private Boolean estado;
     
 
     public UsuarioDTO(Usuario usuario) {
-        this.idUsuario = usuario.getId_usuario();
+        this.idusuario = usuario.getIdusuario();
+        this.nombre = usuario.getNombre();
+        this.apellido = usuario.getApellido();
         this.usuario = usuario.getUsuario();
-        this.contrasena = usuario.getContrasena();
-        this.facultad = usuario.getFacultad();
-        this.idBiblioteca = usuario.getBiblioteca().getId_biblioteca();
+        this.password = usuario.getPassword();
+        this.rol = usuario.getRol().name();
+        this.estado = usuario.getEstado();
     }
 }

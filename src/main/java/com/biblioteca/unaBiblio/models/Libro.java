@@ -28,11 +28,11 @@ public class Libro {
 	//Definicion de los campos de Libro
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_libro", nullable = false)
-	private int idLibro;
+	@Column(name = "idlibro", nullable = false)
+	private int idlibro;
 	
-	@Column(name="nombre_libro", length = 200)
-	private String nombreLibro;
+	@Column(name="descripcion", length = 200)
+	private String descripcion;
 	
     @Column(name="autor", length = 200)
 	private String autor;
@@ -40,11 +40,18 @@ public class Libro {
     @Column(name="editorial", length = 200)
 	private String editorial;
 
-    @Column(name="anio_publicacion", length = 10)
+    @Column(name="aniopublicacion", length = 10)
 	private int anioPublicacion;
+    
+    @Column(name="codigoqr", length = 50)
+    private String codigoQr;
+    
+    @Column(name = "estado", nullable = false)
+	private Boolean estado;
+    
     
     //Clave foranea a la tabla de bibliotecas
     @ManyToOne
-    @JoinColumn(name="id_biblioteca", nullable = false)
+    @JoinColumn(name="idbiblioteca", nullable = false)
     private Biblioteca biblioteca;
 }

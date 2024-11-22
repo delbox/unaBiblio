@@ -1,8 +1,7 @@
 package com.biblioteca.unaBiblio.controllers;
 
 
-import com.biblioteca.unaBiblio.dto.UsuarioDTO;
-import com.biblioteca.unaBiblio.services.UsuarioService;
+
 
 import java.util.List;
 
@@ -17,6 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.biblioteca.unaBiblio.dto.UsuarioDTO;
+import com.biblioteca.unaBiblio.models.Usuario;
+import com.biblioteca.unaBiblio.services.UsuarioService;
 
 
 @RestController
@@ -47,6 +50,13 @@ public class UsuarioController {
     public ResponseEntity<Void> eliminarUsuario(@PathVariable int id) {
         usuarioService.eliminarUsuario(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    //Agregar ruta de usuario por id
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable int id) {
+        Usuario usuario = usuarioService.obtenerUsuarioPorId(id);
+        return ResponseEntity.ok(usuario);
     }
 
 }

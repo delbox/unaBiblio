@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.models;
+/*package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.Entity;
@@ -57,4 +57,4 @@ public class PrestamoLibro {
     @JoinColumn(name="id_bibliotecario", nullable = false)
     private Bibliotecario bibliotecario;
 	
-}
+}*/

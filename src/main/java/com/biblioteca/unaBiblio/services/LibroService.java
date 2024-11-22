@@ -24,7 +24,7 @@ public class LibroService {
     public List<LibroDTO> getAllLibros() {
         List<Libro> libros = libroRepository.findAll();
         return libros.stream()
-            .map(b -> new LibroDTO(b.getIdLibro(), b.getNombreLibro(), b.getAutor(), b.getEditorial(), b.getAnioPublicacion(),b.getBiblioteca().getId_biblioteca()))
+            .map(b -> new LibroDTO(b.getIdlibro(), b.getDescripcion(), b.getAutor(), b.getEditorial(), b.getAnioPublicacion(), b.getCodigoQr(), b.getEstado(),b.getBiblioteca().getIdbiblioteca()))
             .collect(Collectors.toList());
     }
 
@@ -33,11 +33,14 @@ public class LibroService {
     	Libro libro = new Libro();
     	
     	//Aqui se mapea los campos del DTO a la entidad
-        libro.setNombreLibro(libroDTO.getNombreLibro());
+        libro.setDescripcion(libroDTO.getDescripcion());
         libro.setAutor(libroDTO.getAutor());
         libro.setEditorial(libroDTO.getEditorial());
-        libro.setAnioPublicacion(libroDTO.getAnio_publicacion());
+        libro.setAnioPublicacion(libroDTO.getAniopublicacion());
+        libro.setCodigoQr(libroDTO.getCodigoQr());
+        libro.setEstado(libroDTO.getEstado());
         
+       
         Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(libroDTO.getIdBiblioteca());
         libro.setBiblioteca(biblioteca);
     	
@@ -54,10 +57,12 @@ public class LibroService {
                 .orElseThrow(() -> new ResourceNotFoundException("Libro no encontrado con id: " + id));
 
         // Actualizar los campos de la libro
-        libroExistente.setNombreLibro(libroDTO.getNombreLibro());
+        libroExistente.setDescripcion(libroDTO.getDescripcion());
         libroExistente.setAutor(libroDTO.getAutor());
         libroExistente.setEditorial(libroDTO.getEditorial());
-        libroExistente.setAnioPublicacion(libroDTO.getAnio_publicacion());
+        libroExistente.setAnioPublicacion(libroDTO.getAniopublicacion());
+        libroExistente.setCodigoQr(libroDTO.getCodigoQr());
+        libroExistente.setEstado(libroDTO.getEstado());
         
         Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(libroDTO.getIdBiblioteca());
         libroExistente.setBiblioteca(biblioteca);

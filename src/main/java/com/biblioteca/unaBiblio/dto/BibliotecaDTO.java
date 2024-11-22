@@ -16,16 +16,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BibliotecaDTO {
 	
-	private int id_biblioteca;
+	private int idbiblioteca;
 	
 	//@NotNull(mesage = "La facultad no puede ser nula")
-    private String facultad;
+    private String descripcion;
     
     private Boolean estado;
     
     public BibliotecaDTO(Biblioteca biblioteca) {
-    	this.id_biblioteca = biblioteca.getId_biblioteca();
-    	this.facultad = biblioteca.getFacultad();
+    	this.idbiblioteca = biblioteca.getIdbiblioteca();
+    	this.descripcion = biblioteca.getDescripcion();
     	this.estado = biblioteca.getEstado();
     }
 }
