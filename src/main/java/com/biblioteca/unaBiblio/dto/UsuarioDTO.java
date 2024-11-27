@@ -1,6 +1,6 @@
 package com.biblioteca.unaBiblio.dto;
 
-import com.biblioteca.unaBiblio.models.Rol;
+
 import com.biblioteca.unaBiblio.models.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

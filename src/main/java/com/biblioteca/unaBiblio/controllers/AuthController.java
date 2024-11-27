@@ -51,8 +51,8 @@ public class AuthController {
                     .signWith(SECRET_KEY)
                     .compact();
 
-            // Retornar el token en la respuesta
-            LoginResponse response = new LoginResponse(token);
+            // Retornar el token y un mensaje exitoso en la respuesta
+            LoginResponse response = new LoginResponse("Login exitoso", token);
             return ResponseEntity.ok(response);
 
         } catch (ResourceNotFoundException ex) {
