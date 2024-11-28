@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.models;
+package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.Entity;
@@ -21,10 +21,8 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
 @Table(name = "prestamo_libro")
-
 public class PrestamoLibro {
 	
 	//Definicion de los campos de Biblioteca
@@ -46,15 +44,11 @@ public class PrestamoLibro {
     private String observaciones;
     
     @ManyToOne
-    @JoinColumn(name="id_alumno", nullable = false)
-    private Alumno alumno;
+    @JoinColumn(name="id_usuario", nullable = false)
+    private Usuario usuario;
     
     @ManyToOne
     @JoinColumn(name="id_libro", nullable = false)
     private Libro libro;
-    
-    @ManyToOne
-    @JoinColumn(name="id_bibliotecario", nullable = false)
-    private Bibliotecario bibliotecario;
 	
-}*/
+}

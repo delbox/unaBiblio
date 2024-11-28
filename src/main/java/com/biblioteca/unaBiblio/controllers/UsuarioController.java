@@ -53,10 +53,16 @@ public class UsuarioController {
     }
     
     //Agregar ruta de usuario por id
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable int id) {
-        Usuario usuario = usuarioService.obtenerUsuarioPorId(id);
-        return ResponseEntity.ok(usuario);
+    @GetMapping("/buscar-alumno/{id}")
+    public ResponseEntity<Usuario> obtenerUsuarioAlumnoPorId(@PathVariable int id) {
+        Usuario alumno = usuarioService.obtenerUsuarioAlumnoPorId(id);
+        return ResponseEntity.ok(alumno);
+    }
+
+    @GetMapping("/buscar-bibliotecario/{id}")
+    public ResponseEntity<Usuario> obtenerUsuarioBibliotecarioPorId(@PathVariable int id) {
+        Usuario bibliotecario = usuarioService.obtenerUsuarioBibliotecarioPorId(id);
+        return ResponseEntity.ok(bibliotecario);
     }
 
 }

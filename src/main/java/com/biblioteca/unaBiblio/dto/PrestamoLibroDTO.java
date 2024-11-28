@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.dto;
+package com.biblioteca.unaBiblio.dto;
 
 import java.util.Date;
 
@@ -28,9 +28,9 @@ public class PrestamoLibroDTO {
         this.fechaDevolucion = prestamoLibro.getFechaDevolucion();
         this.estadoPrestamo = prestamoLibro.getEstadoPrestamo();
         this.observaciones =  prestamoLibro.getObservaciones();
-        
-        this.idAlumno = prestamoLibro.getAlumno().getIdAlumno();
-        this.idLibro = prestamoLibro.getLibro().getIdLibro();
-        this.idBibliotecario = prestamoLibro.getBibliotecario().getIdBibliotecario();
+
+        this.idAlumno = prestamoLibro.getUsuario().getIdusuario();
+        this.idLibro = prestamoLibro.getLibro().getIdlibro();
+        this.idBibliotecario = prestamoLibro.getUsuario().getIdusuario();
     }
-}*/
+}

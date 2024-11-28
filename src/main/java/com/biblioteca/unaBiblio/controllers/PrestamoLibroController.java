@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.controllers;
+package com.biblioteca.unaBiblio.controllers;
 
 import com.biblioteca.unaBiblio.dto.PrestamoLibroDTO;
 import com.biblioteca.unaBiblio.services.PrestamoLibroService;
@@ -34,4 +34,4 @@ public class PrestamoLibroController {
     	return new ResponseEntity<>(nuevoPrestamo,HttpStatus.CREATED);
     }
 
-}*/
+}

@@ -47,8 +47,8 @@ public class AlertaService {
     	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(alertaDTO.getIdBiblioteca());
     	alerta.setBiblioteca(biblioteca);
     	
-    	Usuario usuario = usuarioService.obtenerUsuarioPorId(alertaDTO.getIdUsuario());
-    	alerta.setUsuario(usuario);
+    	Usuario alumno = usuarioService.obtenerUsuarioAlumnoPorId(alertaDTO.getIdUsuario());
+    	alerta.setUsuario(alumno);
     	
     	//Guardamos la entidad en el repositorio
     	Alerta nuevaAlerta = alertaRepository.save(alerta);
