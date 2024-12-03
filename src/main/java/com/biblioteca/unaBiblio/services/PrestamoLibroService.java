@@ -56,9 +56,9 @@ public class PrestamoLibroService {
     	Libro libro = libroService.obtenerLibroPorId(prestamoLibroDTO.getIdLibro());
     	Usuario bibliotecario = usuarioService.obtenerUsuarioBibliotecarioPorId(prestamoLibroDTO.getIdBibliotecario());
     	
-    	prestamoLibro.setUsuario(alumno);
+    	prestamoLibro.setAlumno(alumno);
     	prestamoLibro.setLibro(libro);
-    	prestamoLibro.setUsuario(bibliotecario);
+    	prestamoLibro.setBibliotecario(bibliotecario);
     	
     	//Guarda la entidad en el repositorio
     	PrestamoLibro nuevoPrestamoLibro = prestamoLibroRepository.save(prestamoLibro);
@@ -67,6 +67,14 @@ public class PrestamoLibroService {
     	return new PrestamoLibroDTO(nuevoPrestamoLibro);
     	
     }
-    
+
+	public void eliminarPrestamo(int id) {
+		// Eliminar prestamo por ID
+		PrestamoLibro prestamoExistente = prestamoLibroRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Prestamo no encontrado con id: " + id));
+
+		// Eliminar libro
+		prestamoLibroRepository.delete(prestamoExistente);
+	}
      
 }

@@ -29,8 +29,8 @@ public class PrestamoLibroDTO {
         this.estadoPrestamo = prestamoLibro.getEstadoPrestamo();
         this.observaciones =  prestamoLibro.getObservaciones();
 
-        this.idAlumno = prestamoLibro.getUsuario().getIdusuario();
+        this.idBibliotecario = prestamoLibro.getBibliotecario().getIdusuario();
+        this.idAlumno = prestamoLibro.getAlumno().getIdusuario();
         this.idLibro = prestamoLibro.getLibro().getIdlibro();
-        this.idBibliotecario = prestamoLibro.getUsuario().getIdusuario();
     }
 }

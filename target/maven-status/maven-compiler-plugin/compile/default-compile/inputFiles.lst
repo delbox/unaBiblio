@@ -1,46 +1,48 @@
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\AppConfig.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\AlertaController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\AlumnoController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\AuthController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\BibliotecaController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\BibliotecarioController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\LibroController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\PrestamoLibroController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\controllers\UsuarioController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\AlertaDTO.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\AlumnoDTO.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\BibliotecaDTO.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\BibliotecarioDTO.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\LibroDTO.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\PrestamoLibroDTO.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\UsuarioDTO.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Alerta.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Alumno.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Biblioteca.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Bibliotecario.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Libro.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\LoginRequest.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\LoginResponse.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\PrestamoLibro.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Rol.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Usuario.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\AlertaRepository.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\AlumnoRepository.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\BibliotecaRepository.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\BibliotecarioRepository.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\LibroRepository.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\PrestamoLibroRepository.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\repositories\UsuarioRepository.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\ResourceNotFoundException.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\AlertaService.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\AlumnoService.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\BibliotecarioService.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\BibliotecaService.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\LibroService.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\PrestamoLibroService.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\PruebaConexionController.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\ResourceNotFoundException.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\services\UsuarioService.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\ServletInitializer.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\UnaBiblioApplication.java
-C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\WebConfig.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/AppConfig.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/ResourceNotFoundException.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/ServletInitializer.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/UnaBiblioApplication.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/WebConfig.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/AlertaController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/AlumnoController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/AuthController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/BibliotecaController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/BibliotecarioController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/LibroController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/PrestamoLibroController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/ReporteController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/controllers/UsuarioController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/dto/AlertaDTO.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/dto/AlumnoDTO.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/dto/BibliotecaDTO.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/dto/BibliotecarioDTO.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/dto/LibroDTO.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/dto/PrestamoLibroDTO.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/dto/UsuarioDTO.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/Alerta.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/Alumno.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/Biblioteca.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/Bibliotecario.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/Libro.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/LoginRequest.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/LoginResponse.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/PrestamoLibro.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/Rol.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/models/Usuario.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/repositories/AlertaRepository.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/repositories/AlumnoRepository.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/repositories/BibliotecaRepository.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/repositories/BibliotecarioRepository.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/repositories/LibroRepository.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/repositories/PrestamoLibroRepository.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/repositories/UsuarioRepository.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/AlertaService.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/AlumnoService.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/BibliotecaService.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/BibliotecarioService.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/LibroService.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/PrestamoLibroService.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/PruebaConexionController.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/ReporteService.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/ResourceNotFoundException.java
+/Users/dago/Documents/UNA/Proyecto II/unaBiblio 2.0/unaBiblio/src/main/java/com/biblioteca/unaBiblio/services/UsuarioService.java

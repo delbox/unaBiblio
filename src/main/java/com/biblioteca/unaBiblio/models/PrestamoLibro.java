@@ -1,18 +1,11 @@
 package com.biblioteca.unaBiblio.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Column;
 
 import java.util.Date;
 
@@ -44,8 +37,12 @@ public class PrestamoLibro {
     private String observaciones;
     
     @ManyToOne
-    @JoinColumn(name="id_usuario", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name="id_bibliotecario", nullable = false)
+    private Usuario bibliotecario;
+
+    @ManyToOne
+    @JoinColumn(name="id_alumno", nullable = false)
+    private Usuario alumno;
     
     @ManyToOne
     @JoinColumn(name="id_libro", nullable = false)
