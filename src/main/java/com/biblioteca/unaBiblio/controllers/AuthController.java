@@ -52,7 +52,7 @@ public class AuthController {
                     .compact();
 
             // Retornar el token y un mensaje exitoso en la respuesta
-            LoginResponse response = new LoginResponse("Login exitoso", token);
+            LoginResponse response = new LoginResponse(usuario, "Login exitoso", token);
             return ResponseEntity.ok(response);
 
         } catch (ResourceNotFoundException ex) {

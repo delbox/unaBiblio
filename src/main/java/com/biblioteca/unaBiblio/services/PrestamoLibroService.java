@@ -1,10 +1,9 @@
-/*package com.biblioteca.unaBiblio.services;
+package com.biblioteca.unaBiblio.services;
 
 import com.biblioteca.unaBiblio.dto.PrestamoLibroDTO;
-import com.biblioteca.unaBiblio.models.Alumno;
-import com.biblioteca.unaBiblio.models.Bibliotecario;
 import com.biblioteca.unaBiblio.models.Libro;
 import com.biblioteca.unaBiblio.models.PrestamoLibro;
+import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.repositories.PrestamoLibroRepository;
 
 import java.util.Calendar;
@@ -23,10 +22,7 @@ public class PrestamoLibroService {
     private PrestamoLibroRepository prestamoLibroRepository;
 
     @Autowired
-    private AlumnoService alumnoService;
-
-    @Autowired
-    private BibliotecarioService bibliotecarioService;
+    private UsuarioService usuarioService;
 
     @Autowired
     private LibroService libroService;
@@ -56,9 +52,9 @@ public class PrestamoLibroService {
     	prestamoLibro.setEstadoPrestamo(prestamoLibroDTO.getEstadoPrestamo());
     	prestamoLibro.setObservaciones(prestamoLibroDTO.getObservaciones());
     	
-    	Alumno alumno = alumnoService.obtenerAlumnoPorId(prestamoLibroDTO.getIdAlumno());
+    	Usuario alumno = usuarioService.obtenerUsuarioAlumnoPorId(prestamoLibroDTO.getIdAlumno());
     	Libro libro = libroService.obtenerLibroPorId(prestamoLibroDTO.getIdLibro());
-    	Bibliotecario bibliotecario = bibliotecarioService.obtenerBibliotecarioPorId(prestamoLibroDTO.getIdBibliotecario());
+    	Usuario bibliotecario = usuarioService.obtenerUsuarioBibliotecarioPorId(prestamoLibroDTO.getIdBibliotecario());
     	
     	prestamoLibro.setAlumno(alumno);
     	prestamoLibro.setLibro(libro);
@@ -71,6 +67,14 @@ public class PrestamoLibroService {
     	return new PrestamoLibroDTO(nuevoPrestamoLibro);
     	
     }
-    
+
+	public void eliminarPrestamo(int id) {
+		// Eliminar prestamo por ID
+		PrestamoLibro prestamoExistente = prestamoLibroRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Prestamo no encontrado con id: " + id));
+
+		// Eliminar libro
+		prestamoLibroRepository.delete(prestamoExistente);
+	}
      
-}*/  
+}

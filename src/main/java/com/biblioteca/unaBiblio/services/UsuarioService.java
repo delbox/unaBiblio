@@ -84,8 +84,31 @@ public class UsuarioService {
     	usuarioRepository.delete(usuarioExistente);
     }
     
-    public Usuario obtenerUsuarioPorId(int id) {
-    	return usuarioRepository.findById(id)
-    			.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
-    }
+    public Usuario obtenerUsuarioAlumnoPorId(int id) {
+		// Busca el usuario por ID
+		Usuario usuario = usuarioRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
+
+		// Verifica si el usuario tiene el rol de "Alumno"
+		if (usuario.getRol() != Rol.ROLE_ALUMNO) {
+			throw new IllegalArgumentException("El usuario con id: " + id + " no tiene el rol de Alumno");
+		}
+
+		// Devuelve el usuario si todo es válido
+		return usuario;
+	}
+
+	public Usuario obtenerUsuarioBibliotecarioPorId(int id) {
+		// Busca el usuario por ID
+		Usuario usuario = usuarioRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
+
+		// Verifica si el usuario tiene el rol de "Bibliotecario"
+		if (usuario.getRol() != Rol.ROLE_BIBLIOTECARIO) {
+			throw new IllegalArgumentException("El usuario con id: " + id + " no tiene el rol de Bibliotecario");
+		}
+
+		// Devuelve el usuario si todo es válido
+		return usuario;
+	}
 }
