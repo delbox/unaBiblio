@@ -7,7 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Data
@@ -47,5 +51,9 @@ public class PrestamoLibro {
     @ManyToOne
     @JoinColumn(name="id_libro", nullable = false)
     private Libro libro;
+    
+    @OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Permite serializar Devoluciones al serializar Prestamo
+    private List<Devolucion> devoluciones = new ArrayList<>();
 	
 }
