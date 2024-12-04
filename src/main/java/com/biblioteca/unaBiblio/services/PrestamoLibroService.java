@@ -1,10 +1,12 @@
 package com.biblioteca.unaBiblio.services;
 
+import com.biblioteca.unaBiblio.dto.HistorialPrestamoDTO;
 import com.biblioteca.unaBiblio.dto.PrestamoLibroDTO;
 import com.biblioteca.unaBiblio.models.Libro;
 import com.biblioteca.unaBiblio.models.PrestamoLibro;
 import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.repositories.PrestamoLibroRepository;
+import com.biblioteca.unaBiblio.repositories.UsuarioRepository;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +22,9 @@ public class PrestamoLibroService {
 
     @Autowired
     private PrestamoLibroRepository prestamoLibroRepository;
+    
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -75,6 +80,25 @@ public class PrestamoLibroService {
 
 		// Eliminar libro
 		prestamoLibroRepository.delete(prestamoExistente);
+	}
+	
+	
+	//Historial Prestamos
+	public List<HistorialPrestamoDTO> obtenerHistorialPrestamoPorAlumno(int idAlumno) {
+		
+		//Validar si el usuario tiene el rol ROLE_ALUMNO
+		boolean esAlumno = usuarioRepository.existeByIdAlumno(idAlumno);
+		
+		if( !esAlumno ) {
+			throw new IllegalArgumentException("El usuario no tiene el rol alumno");
+		}
+		
+	    List<PrestamoLibro> prestamos = prestamoLibroRepository.findByAlumnoIdUsuario(idAlumno);
+
+	    // Convertir cada PrestamoLibro a HistorialPrestamoDTO
+	    return prestamos.stream()
+	        .map(HistorialPrestamoDTO::new) // Usa directamente el constructor del DTO
+	        .collect(Collectors.toList());
 	}
      
 }

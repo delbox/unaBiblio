@@ -1,5 +1,6 @@
 package com.biblioteca.unaBiblio.controllers;
 
+import com.biblioteca.unaBiblio.dto.HistorialPrestamoDTO;
 import com.biblioteca.unaBiblio.dto.PrestamoLibroDTO;
 import com.biblioteca.unaBiblio.services.PrestamoLibroService;
 
@@ -34,6 +35,25 @@ public class PrestamoLibroController {
     public ResponseEntity<Void> eliminarPrestamo(@PathVariable int id) {
         prestamoLibroService.eliminarPrestamo(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    @GetMapping("/historial/{idAlumno}")
+    public ResponseEntity<?> obtenerHistorialPrestamo(@PathVariable int idAlumno) {
+    	
+    	try {
+    		List<HistorialPrestamoDTO> historial = prestamoLibroService.obtenerHistorialPrestamoPorAlumno(idAlumno);
+
+            if (historial.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron préstamos para el alumno");
+            }
+
+            return ResponseEntity.ok(historial);
+    		
+    	} catch(IllegalArgumentException e ) {
+    		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+    	}
+    	
+        
     }
 
 }

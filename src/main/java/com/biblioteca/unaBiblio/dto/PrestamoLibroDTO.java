@@ -21,6 +21,8 @@ public class PrestamoLibroDTO {
     private int idAlumno;
     private int idLibro;
     private int idBibliotecario;
+    
+    
 
     public PrestamoLibroDTO(PrestamoLibro prestamoLibro) {
         this.idPrestamo =  prestamoLibro.getIdPrestamo();
@@ -32,5 +34,6 @@ public class PrestamoLibroDTO {
         this.idBibliotecario = prestamoLibro.getBibliotecario().getIdusuario();
         this.idAlumno = prestamoLibro.getAlumno().getIdusuario();
         this.idLibro = prestamoLibro.getLibro().getIdlibro();
+        
     }
 }

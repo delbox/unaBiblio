@@ -41,6 +41,7 @@ com\biblioteca\unaBiblio\WebConfig.class
 com\biblioteca\unaBiblio\controllers\UsuarioController.class
 com\biblioteca\unaBiblio\ResourceNotFoundException.class
 com\biblioteca\unaBiblio\models\Alerta.class
+com\biblioteca\unaBiblio\dto\HistorialPrestamoDTO.class
 com\biblioteca\unaBiblio\repositories\UsuarioRepository.class
 com\biblioteca\unaBiblio\models\Libro.class
 com\biblioteca\unaBiblio\models\LoginResponse.class
