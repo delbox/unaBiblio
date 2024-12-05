@@ -10,7 +10,7 @@ public class HistorialPrestamoDTO {
     private int idPrestamo;
     private String estadoPrestamo;
     private Date fechaPrestamo;
-    private Date fechaDevolucion;
+    private Date fechaEstimadaDevolucion;
     private String observaciones;
     private String nombreLibro;
 
@@ -19,7 +19,7 @@ public class HistorialPrestamoDTO {
         this.idPrestamo = prestamo.getIdPrestamo();
         this.estadoPrestamo = prestamo.getEstadoPrestamo();
         this.fechaPrestamo = prestamo.getFechaPrestamo();
-        this.fechaDevolucion = prestamo.getFechaDevolucion();
+        this.fechaEstimadaDevolucion = prestamo.getFechaEstimadaDevolucion();
         this.observaciones = prestamo.getObservaciones();
         
         // Si el libro está relacionado, trae su descripción
@@ -50,12 +50,12 @@ public class HistorialPrestamoDTO {
 		this.fechaPrestamo = fechaPrestamo;
 	}
 
-	public Date getFechaDevolucion() {
-		return fechaDevolucion;
+	public Date getFechaEstimadaDevolucion() {
+		return fechaEstimadaDevolucion;
 	}
 
-	public void setFechaDevolucion(Date fechaDevolucion) {
-		this.fechaDevolucion = fechaDevolucion;
+	public void setFechaEstimadaDevolucion(Date fechaEstimadaDevolucion) {
+		this.fechaEstimadaDevolucion = fechaEstimadaDevolucion;
 	}
 
 	public String getObservaciones() {

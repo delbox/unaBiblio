@@ -31,8 +31,8 @@ public class PrestamoLibro {
 	@Column(name="fecha_prestamo", length = 200)
 	private Date fechaPrestamo;
 	
-	@Column(name="fecha_devolucion")
-	private Date fechaDevolucion;
+	@Column(name="fecha_estimada_devolucion")
+	private Date fechaEstimadaDevolucion;
 
     @Column(name="estado_prestamo")
     private String estadoPrestamo;

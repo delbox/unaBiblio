@@ -63,7 +63,7 @@ public class ReporteService {
             table.addCell((prestamo.getBibliotecario().getNombre()) + " " + (prestamo.getBibliotecario().getApellido()));
             table.addCell((prestamo.getAlumno().getNombre()) + " "  + (prestamo.getAlumno().getApellido()));
             table.addCell(prestamo.getFechaPrestamo().toString());
-            table.addCell(prestamo.getFechaDevolucion().toString());
+            table.addCell(prestamo.getFechaEstimadaDevolucion().toString());
         }
 
         document.add(table);
@@ -92,7 +92,7 @@ public class ReporteService {
             row.createCell(2).setCellValue(prestamo.getBibliotecario().getNombre());
             row.createCell(3).setCellValue(prestamo.getBibliotecario().getNombre());
             row.createCell(4).setCellValue(prestamo.getFechaPrestamo().toString());
-            row.createCell(5).setCellValue(prestamo.getFechaDevolucion().toString());
+            row.createCell(5).setCellValue(prestamo.getFechaEstimadaDevolucion().toString());
         }
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();

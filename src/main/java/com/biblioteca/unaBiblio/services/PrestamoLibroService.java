@@ -50,8 +50,8 @@ public class PrestamoLibroService {
     	Calendar calendar = Calendar.getInstance();
     	calendar.setTime(fechaActual);
     	calendar.add(Calendar.DATE, 3);
-    	Date fechaDevolucion = calendar.getTime();
-    	prestamoLibro.setFechaDevolucion(fechaDevolucion);
+    	Date fechaEstimadaDevolucion = calendar.getTime();
+    	prestamoLibro.setFechaEstimadaDevolucion(fechaEstimadaDevolucion);
     	
     	
     	prestamoLibro.setEstadoPrestamo(prestamoLibroDTO.getEstadoPrestamo());

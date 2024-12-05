@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class PrestamoLibroDTO {
     private int idPrestamo;
     private Date fechaPrestamo;
-    private Date fechaDevolucion;
+    private Date fechaEstimadaDevolucion;
     private String estadoPrestamo;
     private String observaciones;
     private int idAlumno;
@@ -30,7 +30,7 @@ public class PrestamoLibroDTO {
     public PrestamoLibroDTO(PrestamoLibro prestamoLibro) {
         this.idPrestamo =  prestamoLibro.getIdPrestamo();
         this.fechaPrestamo = prestamoLibro.getFechaPrestamo();
-        this.fechaDevolucion = prestamoLibro.getFechaDevolucion();
+        this.fechaEstimadaDevolucion = prestamoLibro.getFechaEstimadaDevolucion();
         this.estadoPrestamo = prestamoLibro.getEstadoPrestamo();
         this.observaciones =  prestamoLibro.getObservaciones();
 
