@@ -21,6 +21,9 @@ public class PrestamoLibroDTO {
     private int idAlumno;
     private int idLibro;
     private int idBibliotecario;
+    private String nombreLibro;
+    private String nombreCompletoAlumno;
+    private String nombreCompletoBibliotecario;
     
     
 
@@ -35,5 +38,8 @@ public class PrestamoLibroDTO {
         this.idAlumno = prestamoLibro.getAlumno().getIdusuario();
         this.idLibro = prestamoLibro.getLibro().getIdlibro();
         
+        this.nombreLibro = prestamoLibro.getLibro().getDescripcion();
+        this.nombreCompletoAlumno = prestamoLibro.getAlumno().getNombre() + " " + prestamoLibro.getAlumno().getApellido();
+        this.nombreCompletoBibliotecario = prestamoLibro.getBibliotecario().getNombre() + " " + prestamoLibro.getBibliotecario().getApellido();
     }
 }
