@@ -26,7 +26,7 @@ public class UsuarioService {
     public List<UsuarioDTO> getAllUsuarios() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
-            .map(b -> new UsuarioDTO(b.getIdusuario(),b.getNombre(), b.getApellido(), b.getUsuario(), b.getPassword(), b.getRol().name(), b.getEstado()))
+            .map(b -> new UsuarioDTO(b.getIdusuario(),b.getNombre(), b.getApellido(), b.getUsuario(), b.getPassword(), b.getRol().name(), b.getEstado(), b.getCedula()))
             .collect(Collectors.toList());
     }
     
@@ -41,6 +41,7 @@ public class UsuarioService {
     	usuario.setPassword(usuarioDTO.getPassword());
     	usuario.setRol(Rol.valueOf(usuarioDTO.getRol()));
     	usuario.setEstado(usuarioDTO.getEstado() != null ? usuarioDTO.getEstado() : true);
+    	usuario.setCedula(usuarioDTO.getCedula());
     	
     	//Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(usuarioDTO.getIdBiblioteca());
     	//usuario.setBiblioteca(biblioteca);
@@ -64,6 +65,7 @@ public class UsuarioService {
     	usuarioExistente.setApellido(usuarioDTO.getApellido());
     	usuarioExistente.setUsuario(usuarioDTO.getUsuario());
     	usuarioExistente.setRol(Rol.valueOf(usuarioDTO.getRol()));
+    	usuarioExistente.setCedula(usuarioDTO.getCedula());
   
     	/*Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(usuarioDTO.getIdBiblioteca());
     	usuarioExistente.setBiblioteca(biblioteca);*/
@@ -83,6 +85,15 @@ public class UsuarioService {
     	//Eliminar usuario
     	usuarioRepository.delete(usuarioExistente);
     }
+    
+    public Usuario obtenerUsuarioPorId(int id) {
+		// Busca el usuario por ID
+		Usuario usuario = usuarioRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
+		
+		// Devuelve el usuario si todo es válido
+		return usuario;
+	}
     
     public Usuario obtenerUsuarioAlumnoPorId(int id) {
 		// Busca el usuario por ID

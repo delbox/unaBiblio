@@ -19,6 +19,7 @@ public class UsuarioDTO {
     private String password;
     private String rol;
     private Boolean estado;
+    private String cedula;
     
 
     public UsuarioDTO(Usuario usuario) {
@@ -29,5 +30,6 @@ public class UsuarioDTO {
         this.password = usuario.getPassword();
         this.rol = usuario.getRol().name();
         this.estado = usuario.getEstado();
+        this.cedula = usuario.getCedula();
     }
 }

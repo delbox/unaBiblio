@@ -51,4 +51,7 @@ public class Usuario {
 	@Column(name = "estado", nullable = false)
 	private Boolean estado = true;
 	
+	@Column(name = "cedula", length = 20)
+	private String cedula;
+	
 }
