@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.models;
+/*package com.biblioteca.unaBiblio.models;
 
 import com.biblioteca.unaBiblio.models.Usuario;
 
@@ -40,4 +40,4 @@ public class LoginResponse {
     public void setMensaje( String mensaje ) {
     	this.mensaje = mensaje;
     }
-}
+}*/

@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.models;
+/*package com.biblioteca.unaBiblio.models;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -59,3 +59,4 @@ public class Alerta {
 	    @JoinColumn(name="idusuario", nullable = false)
 	    private Usuario usuario;
 }
+*/

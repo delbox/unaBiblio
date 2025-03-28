@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.repositories;
+/*package com.biblioteca.unaBiblio.repositories;
 
 import com.biblioteca.unaBiblio.models.Devolucion;
 import com.biblioteca.unaBiblio.models.PrestamoLibro;
@@ -13,7 +13,7 @@ public interface DevolucionRepository extends JpaRepository<Devolucion, Integer>
 }
 
 
-
+*/
 
 
 

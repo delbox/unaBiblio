@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.models;
+/*package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.Entity;
@@ -54,4 +54,4 @@ public class Libro {
     @ManyToOne
     @JoinColumn(name="idbiblioteca", nullable = false)
     private Biblioteca biblioteca;
-}
+}*/

@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.services;
+/*package com.biblioteca.unaBiblio.services;
 
 
 import com.biblioteca.unaBiblio.dto.UsuarioDTO;
@@ -52,7 +52,7 @@ public class UsuarioService {
     	//Convierte la entidad guardada a DTO y devuelve
     	return new UsuarioDTO(nuevoUsuario);
     }
-    
+   
    
     public UsuarioDTO actualizarUsuario(int id, UsuarioDTO usuarioDTO) {
     	//Buscar libro por ID
@@ -67,8 +67,8 @@ public class UsuarioService {
     	usuarioExistente.setRol(Rol.valueOf(usuarioDTO.getRol()));
     	usuarioExistente.setCedula(usuarioDTO.getCedula());
   
-    	/*Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(usuarioDTO.getIdBiblioteca());
-    	usuarioExistente.setBiblioteca(biblioteca);*/
+    	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(usuarioDTO.getIdBiblioteca());
+    	usuarioExistente.setBiblioteca(biblioteca);
     	
     	//Guardar el usuario actualizado en la base de datos
     	Usuario usuarioActualizado = usuarioRepository.save(usuarioExistente);
@@ -123,3 +123,5 @@ public class UsuarioService {
 		return usuario;
 	}
 }
+
+*/

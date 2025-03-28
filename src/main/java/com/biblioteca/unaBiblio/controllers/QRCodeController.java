@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.controllers;
+/*package com.biblioteca.unaBiblio.controllers;
 
 import com.biblioteca.unaBiblio.models.Libro;
 import com.biblioteca.unaBiblio.services.QRCodeService;
@@ -48,3 +48,4 @@ public class QRCodeController {
     }
 }
 
+*/

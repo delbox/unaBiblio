@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.dto;
+/*package com.biblioteca.unaBiblio.dto;
 
 
 import com.biblioteca.unaBiblio.models.Usuario;
@@ -33,3 +33,4 @@ public class UsuarioDTO {
         this.cedula = usuario.getCedula();
     }
 }
+*/

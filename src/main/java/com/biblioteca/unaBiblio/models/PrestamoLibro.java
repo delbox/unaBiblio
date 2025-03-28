@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.models;
+/*package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.*;
@@ -57,3 +57,4 @@ public class PrestamoLibro {
     private List<Devolucion> devoluciones = new ArrayList<>();
 	
 }
+*/

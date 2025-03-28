@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.dto;
+/*package com.biblioteca.unaBiblio.dto;
 
 import java.util.Date;
 
@@ -77,3 +77,4 @@ public class HistorialPrestamoDTO {
     
     
 }
+*/

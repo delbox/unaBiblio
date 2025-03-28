@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.models;
+/*package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.Entity;
@@ -37,6 +37,6 @@ public class Biblioteca {
 	private Boolean estado;
 	
 }
-
+*/
 
 

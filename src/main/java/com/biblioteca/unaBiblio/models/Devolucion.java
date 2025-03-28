@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.models;
+/*package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.*;
@@ -37,4 +37,4 @@ public class Devolucion {
     @JsonBackReference // Evita la serialización de Prestamo al serializar Devolucion
     private PrestamoLibro prestamo;
 	
-}
+}*/

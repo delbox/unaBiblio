@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.repositories;
+/*package com.biblioteca.unaBiblio.repositories;
 
 import java.util.Optional;
 
@@ -21,3 +21,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
 	boolean existeByIdAlumno(@Param("id") int id);
 	
 }
+*/

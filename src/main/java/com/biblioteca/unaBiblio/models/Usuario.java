@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.models;
+/*package com.biblioteca.unaBiblio.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -54,4 +54,4 @@ public class Usuario {
 	@Column(name = "cedula", length = 20)
 	private String cedula;
 	
-}
+}*/

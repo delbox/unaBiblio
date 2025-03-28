@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.repositories;
+/*package com.biblioteca.unaBiblio.repositories;
 
 import java.util.List;
 
@@ -18,5 +18,5 @@ public interface PrestamoLibroRepository extends JpaRepository<PrestamoLibro,Int
 	List<PrestamoLibro> findByAlumnoIdUsuario(int idusuario);
 }
 
-
+*/
 

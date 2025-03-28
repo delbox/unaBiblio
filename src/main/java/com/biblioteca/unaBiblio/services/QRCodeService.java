@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.services;
+/*package com.biblioteca.unaBiblio.services;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -55,4 +55,4 @@ public class QRCodeService {
         }
     }
 
-}
+}*/

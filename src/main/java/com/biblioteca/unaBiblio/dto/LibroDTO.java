@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.dto;
+/*package com.biblioteca.unaBiblio.dto;
 
 
 import com.biblioteca.unaBiblio.models.Libro;
@@ -31,4 +31,4 @@ public class LibroDTO {
         this.estado = libro.getEstado();
         this.idBiblioteca = libro.getBiblioteca().getIdbiblioteca();
     }
-}
+}*/
