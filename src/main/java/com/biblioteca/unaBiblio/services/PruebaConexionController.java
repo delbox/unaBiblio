@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.services;
+package com.biblioteca.unaBiblio.services;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -29,4 +29,4 @@ public class PruebaConexionController {
 			return "Error al conectar con la base de datos: "+ e.getMessage();
 		}
 	}
-}*/
+}

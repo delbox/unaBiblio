@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.controllers;
+package com.biblioteca.unaBiblio.controllers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.biblioteca.unaBiblio.dto.BibliotecaDTO;
-import com.biblioteca.unaBiblio.models.Biblioteca;
 import com.biblioteca.unaBiblio.services.BibliotecaService;
 //import jakarta.validation.Valid;
 
@@ -41,12 +40,10 @@ public class BibliotecaController {
     }
     
     //Agregar ruta de biblioteca por id
-    @GetMapping("/buscar/{id}")
+    /*@GetMapping("/buscar/{id}")
     public ResponseEntity<Biblioteca> obtenerBibliotecaPorId(@PathVariable int id) {
         Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(id);
         return ResponseEntity.ok(biblioteca);
-    }
-    
-    
+    }*/
+   
 }
-*/

@@ -1,8 +1,12 @@
-/*package com.biblioteca.unaBiblio.dto;
+package com.biblioteca.unaBiblio.dto;
 
-import java.util.Date;
 
+import java.time.LocalDateTime;
+
+import com.biblioteca.unaBiblio.models.EstadoPrestamo;
 import com.biblioteca.unaBiblio.models.PrestamoLibro;
+import com.biblioteca.unaBiblio.models.TipoPrestamo;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,34 +17,32 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PrestamoLibroDTO {
-    private int idPrestamo;
-    private Date fechaPrestamo;
-    private Date fechaEstimadaDevolucion;
-    private String estadoPrestamo;
-    private String observaciones;
-    private int idAlumno;
-    private int idLibro;
-    private int idBibliotecario;
-    private String nombreLibro;
+    private int idprestamo;
+    private LocalDateTime fechaprestamo;
+    private TipoPrestamo tipoprestamo;
+    private LocalDateTime fechaestimadadevolucion;
+    private EstadoPrestamo estadoprestamo;
+    private int idalumno;
+    private int idusuario;
+    private int idbiblioteca;
+    
     private String nombreCompletoAlumno;
-    private String nombreCompletoBibliotecario;
+    private String nombreCompletoUsuario;
     
     
 
     public PrestamoLibroDTO(PrestamoLibro prestamoLibro) {
-        this.idPrestamo =  prestamoLibro.getIdPrestamo();
-        this.fechaPrestamo = prestamoLibro.getFechaPrestamo();
-        this.fechaEstimadaDevolucion = prestamoLibro.getFechaEstimadaDevolucion();
-        this.estadoPrestamo = prestamoLibro.getEstadoPrestamo();
-        this.observaciones =  prestamoLibro.getObservaciones();
+        this.idprestamo =  prestamoLibro.getIdprestamo();
+        this.fechaprestamo = prestamoLibro.getFechaprestamo();
+        this.tipoprestamo = prestamoLibro.getTipoprestamo();
+        this.fechaestimadadevolucion = prestamoLibro.getFechaestimadadevolucion();
+        this.estadoprestamo = prestamoLibro.getEstadoprestamo();
 
-        this.idBibliotecario = prestamoLibro.getBibliotecario().getIdusuario();
-        this.idAlumno = prestamoLibro.getAlumno().getIdusuario();
-        this.idLibro = prestamoLibro.getLibro().getIdlibro();
+        this.idalumno = prestamoLibro.getAlumno().getIdalumno();
+        this.idusuario = prestamoLibro.getUsuario().getIdusuario();
+        this.idbiblioteca = prestamoLibro.getBiblioteca().getIdbiblioteca();
         
-        this.nombreLibro = prestamoLibro.getLibro().getDescripcion();
         this.nombreCompletoAlumno = prestamoLibro.getAlumno().getNombre() + " " + prestamoLibro.getAlumno().getApellido();
-        this.nombreCompletoBibliotecario = prestamoLibro.getBibliotecario().getNombre() + " " + prestamoLibro.getBibliotecario().getApellido();
+        this.nombreCompletoUsuario = prestamoLibro.getUsuario().getNombre() + " " + prestamoLibro.getUsuario().getApellido();
     }
 }
-*/

@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.controllers;
+package com.biblioteca.unaBiblio.controllers;
 
 
 import com.biblioteca.unaBiblio.dto.AlumnoDTO;
@@ -49,4 +49,4 @@ public class AlumnoController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
        
-}*/   
+}  

@@ -1,15 +1,18 @@
-/*package com.biblioteca.unaBiblio.services;
+package com.biblioteca.unaBiblio.services;
 
-import com.biblioteca.unaBiblio.dto.HistorialPrestamoDTO;
+
+import com.biblioteca.unaBiblio.ResourceNotFoundException;
 import com.biblioteca.unaBiblio.dto.PrestamoLibroDTO;
-import com.biblioteca.unaBiblio.models.Libro;
+import com.biblioteca.unaBiblio.models.Alumno;
+import com.biblioteca.unaBiblio.models.Biblioteca;
+import com.biblioteca.unaBiblio.models.EstadoPrestamo;
 import com.biblioteca.unaBiblio.models.PrestamoLibro;
+import com.biblioteca.unaBiblio.models.TipoPrestamo;
 import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.repositories.PrestamoLibroRepository;
-import com.biblioteca.unaBiblio.repositories.UsuarioRepository;
 
-import java.util.Calendar;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,14 +26,15 @@ public class PrestamoLibroService {
     @Autowired
     private PrestamoLibroRepository prestamoLibroRepository;
     
+    
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private AlumnoService alumnoService;
 
     @Autowired
     private UsuarioService usuarioService;
 
     @Autowired
-    private LibroService libroService;
+    private BibliotecaService bibliotecaService;
     
     public List<PrestamoLibroDTO> getAllPrestamos(){
         List<PrestamoLibro> prestamos = prestamoLibroRepository.findAll();
@@ -39,31 +43,34 @@ public class PrestamoLibroService {
                 .collect(Collectors.toList());
     }
     
-    public PrestamoLibroDTO agregarPrestamo(PrestamoLibroDTO prestamoLibroDTO) {
+    
+	public PrestamoLibroDTO agregarPrestamo(PrestamoLibroDTO prestamoLibroDTO) {
     	PrestamoLibro prestamoLibro = new PrestamoLibro();
     	
     	//obtener la fecha actual para el prestamo
-    	Date fechaActual = new Date();
-    	prestamoLibro.setFechaPrestamo(fechaActual);
+    	LocalDateTime fechaActual = LocalDateTime.now();
+    	prestamoLibro.setFechaprestamo(fechaActual);
     	
-    	//Calcula la fecha estimada de devolucion (3 dias despues)
-    	Calendar calendar = Calendar.getInstance();
-    	calendar.setTime(fechaActual);
-    	calendar.add(Calendar.DATE, 3);
-    	Date fechaEstimadaDevolucion = calendar.getTime();
-    	prestamoLibro.setFechaEstimadaDevolucion(fechaEstimadaDevolucion);
+    	TipoPrestamo tipoPrestamo = prestamoLibroDTO.getTipoprestamo();
+    	prestamoLibro.setTipoprestamo(tipoPrestamo);
     	
+    	if ( tipoPrestamo == TipoPrestamo.LOCAL ) {
+    		prestamoLibro.setFechaestimadadevolucion(fechaActual);
+    	} else {
+    		//Calcula la fecha estimada de devolucion (5 dias despues)
+        	LocalDateTime fechaEstimadaDevolucion = fechaActual.plusDays(5);
+        	prestamoLibro.setFechaestimadadevolucion(fechaEstimadaDevolucion);
+    	}
     	
-    	prestamoLibro.setEstadoPrestamo(prestamoLibroDTO.getEstadoPrestamo());
-    	prestamoLibro.setObservaciones(prestamoLibroDTO.getObservaciones());
+    	prestamoLibro.setEstadoprestamo(EstadoPrestamo.ACTIVO);
     	
-    	Usuario alumno = usuarioService.obtenerUsuarioAlumnoPorId(prestamoLibroDTO.getIdAlumno());
-    	Libro libro = libroService.obtenerLibroPorId(prestamoLibroDTO.getIdLibro());
-    	Usuario bibliotecario = usuarioService.obtenerUsuarioBibliotecarioPorId(prestamoLibroDTO.getIdBibliotecario());
+    	Alumno alumno = alumnoService.obtenerAlumnoPorId(prestamoLibroDTO.getIdalumno());
+    	Usuario usuario = usuarioService.obtenerUsuarioPorId(prestamoLibroDTO.getIdusuario());
+    	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(prestamoLibroDTO.getIdbiblioteca());
     	
     	prestamoLibro.setAlumno(alumno);
-    	prestamoLibro.setLibro(libro);
-    	prestamoLibro.setBibliotecario(bibliotecario);
+    	prestamoLibro.setUsuario(usuario);
+    	prestamoLibro.setBiblioteca(biblioteca);
     	
     	//Guarda la entidad en el repositorio
     	PrestamoLibro nuevoPrestamoLibro = prestamoLibroRepository.save(prestamoLibro);
@@ -84,7 +91,7 @@ public class PrestamoLibroService {
 	
 	
 	//Historial Prestamos
-	public List<HistorialPrestamoDTO> obtenerHistorialPrestamoPorAlumno(int idAlumno) {
+	/*public List<HistorialPrestamoDTO> obtenerHistorialPrestamoPorAlumno(int idAlumno) {
 		
 		//Validar si el usuario tiene el rol ROLE_ALUMNO
 		boolean esAlumno = usuarioRepository.existeByIdAlumno(idAlumno);
@@ -99,6 +106,6 @@ public class PrestamoLibroService {
 	    return prestamos.stream()
 	        .map(HistorialPrestamoDTO::new) // Usa directamente el constructor del DTO
 	        .collect(Collectors.toList());
-	}
+	}*/
      
-}*/
+}

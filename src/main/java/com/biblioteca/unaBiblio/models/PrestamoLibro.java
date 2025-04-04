@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.models;
+package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.*;
@@ -7,11 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -19,42 +15,43 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "prestamo_libro")
+@Table(name = "prestamos")
 public class PrestamoLibro {
 	
 	//Definicion de los campos de Biblioteca
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_prestamo", nullable = false)
-	private int idPrestamo;
+	private int idprestamo;
 	
-	@Column(name="fecha_prestamo", length = 200)
-	private Date fechaPrestamo;
+	@Column(name="fecha_prestamo", nullable = false)
+	private LocalDateTime fechaprestamo;
 	
-	@Column(name="fecha_estimada_devolucion")
-	private Date fechaEstimadaDevolucion;
+	@Enumerated(EnumType.STRING)
+	@Column(name="tipo_prestamo", length = 100, nullable = false)
+	private TipoPrestamo tipoprestamo;
+	
+	@Column(name="fecha_estimada_devolucion", nullable = false)
+	private LocalDateTime fechaestimadadevolucion;
 
-    @Column(name="estado_prestamo")
-    private String estadoPrestamo;
-
-    @Column(name="observaciones")
-    private String observaciones;
+	@Enumerated(EnumType.STRING)
+    @Column(name="estado_prestamo", nullable = false)
+    private EstadoPrestamo estadoprestamo;
     
-    @ManyToOne
-    @JoinColumn(name="id_bibliotecario", nullable = false)
-    private Usuario bibliotecario;
-
     @ManyToOne
     @JoinColumn(name="id_alumno", nullable = false)
-    private Usuario alumno;
+    private Alumno alumno;
+
+    @ManyToOne
+    @JoinColumn(name="id_usuario", nullable = false)
+    private Usuario usuario;
     
     @ManyToOne
-    @JoinColumn(name="id_libro", nullable = false)
-    private Libro libro;
+    @JoinColumn(name="id_biblioteca", nullable = false)
+    private Biblioteca biblioteca;
     
-    @OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, orphanRemoval = true)
+    /*@OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference // Permite serializar Devoluciones al serializar Prestamo
-    private List<Devolucion> devoluciones = new ArrayList<>();
+    private List<Devolucion> devoluciones = new ArrayList<>();*/
 	
 }
-*/

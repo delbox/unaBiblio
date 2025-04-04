@@ -1,7 +1,11 @@
-/*package com.biblioteca.unaBiblio.services;
+package com.biblioteca.unaBiblio.services;
 
+
+
+
+
+import com.biblioteca.unaBiblio.ResourceNotFoundException;
 import com.biblioteca.unaBiblio.dto.LibroDTO;
-import com.biblioteca.unaBiblio.models.Biblioteca;
 import com.biblioteca.unaBiblio.models.Libro;
 import com.biblioteca.unaBiblio.repositories.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +21,12 @@ public class LibroService {
     @Autowired
     private LibroRepository libroRepository;
     
-    @Autowired
-    private BibliotecaService bibliotecaService;
     
-
+    
     public List<LibroDTO> getAllLibros() {
         List<Libro> libros = libroRepository.findAll();
         return libros.stream()
-            .map(b -> new LibroDTO(b.getIdlibro(), b.getDescripcion(), b.getAutor(), b.getEditorial(), b.getAnioPublicacion(), b.getCodigoQr(), b.getEstado(),b.getBiblioteca().getIdbiblioteca()))
+            .map(l -> new LibroDTO(l.getIdlibro(),l.getTitulo(),l.getAutor(),l.getEditorial(),l.getAniopublicacion(),l.getIsbn()))
             .collect(Collectors.toList());
     }
 
@@ -33,16 +35,16 @@ public class LibroService {
     	Libro libro = new Libro();
     	
     	//Aqui se mapea los campos del DTO a la entidad
-        libro.setDescripcion(libroDTO.getDescripcion());
+        libro.setTitulo(libroDTO.getTitulo());
         libro.setAutor(libroDTO.getAutor());
         libro.setEditorial(libroDTO.getEditorial());
-        libro.setAnioPublicacion(libroDTO.getAniopublicacion());
-        libro.setCodigoQr(libroDTO.getCodigoQr());
-        libro.setEstado(libroDTO.getEstado());
+        libro.setAniopublicacion(libroDTO.getAniopublicacion());
+        /*libro.setCodigoQr(libroDTO.getCodigoQr());
+        libro.setEstado(libroDTO.getEstado());*/
+        libro.setIsbn(libroDTO.getIsbn());
         
-       
-        Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(libroDTO.getIdBiblioteca());
-        libro.setBiblioteca(biblioteca);
+        /*Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(libroDTO.getIdBiblioteca());
+        libro.setBiblioteca(biblioteca);*/
     	
     	//Guarda la entidad en el repositorio
     	Libro nuevoLibro = libroRepository.save(libro);
@@ -51,7 +53,7 @@ public class LibroService {
     	return new LibroDTO(nuevoLibro);
     }
     
-    public LibroDTO actualizarLibro(int id, LibroDTO libroDTO) {
+    /*public LibroDTO actualizarLibro(int id, LibroDTO libroDTO) {
         // Buscar la libro por ID
         Libro libroExistente = libroRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Libro no encontrado con id: " + id));
@@ -81,10 +83,10 @@ public class LibroService {
 
         // Eliminar libro
         libroRepository.delete(libroExistente);
-    }
+    }*/
     
     public Libro obtenerLibroPorId(int id) {
     	return libroRepository.findById(id)
     			.orElseThrow(() -> new ResourceNotFoundException("Libro no encontrado con id: " + id));
     }
-}*/
+}

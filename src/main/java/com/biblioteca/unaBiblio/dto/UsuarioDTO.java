@@ -1,4 +1,5 @@
-/*package com.biblioteca.unaBiblio.dto;
+package com.biblioteca.unaBiblio.dto;
+
 
 
 import com.biblioteca.unaBiblio.models.Usuario;
@@ -17,9 +18,9 @@ public class UsuarioDTO {
     private String apellido;
     private String usuario;
     private String password;
-    private String rol;
-    private Boolean estado;
-    private String cedula;
+    private Boolean activo;
+    private int rol;
+   
     
 
     public UsuarioDTO(Usuario usuario) {
@@ -28,9 +29,7 @@ public class UsuarioDTO {
         this.apellido = usuario.getApellido();
         this.usuario = usuario.getUsuario();
         this.password = usuario.getPassword();
-        this.rol = usuario.getRol().name();
-        this.estado = usuario.getEstado();
-        this.cedula = usuario.getCedula();
+        this.activo = usuario.getActivo();
+        this.rol = usuario.getRol().getIdrol();
     }
 }
-*/

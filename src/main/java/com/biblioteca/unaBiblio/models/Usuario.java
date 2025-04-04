@@ -1,11 +1,11 @@
-/*package com.biblioteca.unaBiblio.models;
+package com.biblioteca.unaBiblio.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,29 +29,28 @@ public class Usuario {
 	//Definicion de los campos de Usuario
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idusuario", nullable = false)
+	@Column(name = "id_usuario", nullable = false)
 	private int idusuario;
 	
-	@Column(name = "nombre", length = 100)
+	@Column(name = "nombre", length = 100, nullable = false)
 	private String nombre;
 	
-	@Column(name = "apellido", length = 100)
+	@Column(name = "apellido", length = 100, nullable = false)
 	private String apellido;
 	
-	@Column(name = "usuario", length = 100)
+	@Column(name = "usuario", length = 100, nullable = false, unique = true)
 	private String usuario;
 	
-	@Column(name = "password", length = 50)
+	@Column(name = "password", length = 200, nullable = false)
 	private String password;
 	
-	@Enumerated(EnumType.STRING)
-    private Rol rol;
-	
 	@Builder.Default
-	@Column(name = "estado", nullable = false)
-	private Boolean estado = true;
+	@Column(name = "activo", nullable = false)
+	private Boolean activo = true;
 	
-	@Column(name = "cedula", length = 20)
-	private String cedula;
+	//Relacion con la tabla roles
+	@ManyToOne
+	@JoinColumn(name= "id_rol", nullable = false)
+	private Rol rol;
 	
-}*/
+}

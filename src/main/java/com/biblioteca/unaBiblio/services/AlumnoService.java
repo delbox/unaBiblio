@@ -1,9 +1,9 @@
-/*package com.biblioteca.unaBiblio.services;
+package com.biblioteca.unaBiblio.services;
 
+import com.biblioteca.unaBiblio.ResourceNotFoundException;
 import com.biblioteca.unaBiblio.dto.AlumnoDTO;
 import com.biblioteca.unaBiblio.models.Alumno;
 import com.biblioteca.unaBiblio.models.Biblioteca;
-import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.repositories.AlumnoRepository;
 
 import java.util.List;
@@ -22,27 +22,28 @@ public class AlumnoService {
     @Autowired
     private BibliotecaService bibliotecaService;
     
-    @Autowired
-    private UsuarioService usuarioService;
     
     public List<AlumnoDTO> getAllAlumnos(){
     	List<Alumno> alumnos = alumnoRepository.findAll();
     	return alumnos.stream()
-    		   .map(b-> new AlumnoDTO(b.getIdAlumno(),b.getNombreApellido(),b.getBiblioteca().getId_biblioteca(),b.getUsuario().getId_usuario()))
-    		   .collect(Collectors.toList());
+    		   .map(
+    		    a-> new AlumnoDTO(a.getIdalumno(),a.getNombre(),a.getApellido(),a.getCedula(),a.getEmail(),a.getTelefono(),a.getBiblioteca().getIdbiblioteca()))
+    		   	.collect(Collectors.toList());
     }
+    
     
     public AlumnoDTO agregarAlumno(AlumnoDTO alumnoDTO) {
     	Alumno alumno = new Alumno();
     	
-    	alumno.setNombreApellido(alumnoDTO.getNombreApellido());
+    	alumno.setNombre(alumnoDTO.getNombre());
+    	alumno.setApellido(alumnoDTO.getApellido());
+    	alumno.setCedula(alumnoDTO.getCedula());
+    	alumno.setEmail(alumnoDTO.getEmail());
+    	alumno.setTelefono(alumnoDTO.getTelefono());
     	
-    	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(alumnoDTO.getIdBiblioteca());
-    	
-    	Usuario usuario = usuarioService.obtenerUsuarioPorId(alumnoDTO.getIdUsuario());
+    	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(alumnoDTO.getIdbiblioteca());
     	
     	alumno.setBiblioteca(biblioteca);
-    	alumno.setUsuario(usuario);
     	
     	//Guarda la entidad en el repositorio
     	Alumno nuevoAlumno = alumnoRepository.save(alumno);
@@ -58,13 +59,15 @@ public class AlumnoService {
     			.orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + id));
     	
     	//Actualizar los campos del Alumno
-    	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(alumnoDTO.getIdBiblioteca());
-    	Usuario usuario = usuarioService.obtenerUsuarioPorId(alumnoDTO.getIdUsuario());
+    	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(alumnoDTO.getIdbiblioteca());
     	
-    	alumnoExistente.setNombreApellido(alumnoDTO.getNombreApellido());
+    	alumnoExistente.setNombre(alumnoDTO.getNombre());
+    	alumnoExistente.setApellido(alumnoDTO.getApellido());
+    	alumnoExistente.setCedula(alumnoDTO.getCedula());
+    	alumnoExistente.setEmail(alumnoDTO.getEmail());
+    	alumnoExistente.setTelefono(alumnoDTO.getTelefono());
     	alumnoExistente.setBiblioteca(biblioteca);
-    	alumnoExistente.setUsuario(usuario);
-    	
+ 
     	//Guardar el alumno actualizado en la base de datos
     	Alumno alumnoActualizado = alumnoRepository.save(alumnoExistente);
     	
@@ -86,4 +89,4 @@ public class AlumnoService {
     	return alumnoRepository.findById(id)
     			.orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con id: " + id));
     }
-}*/
+}

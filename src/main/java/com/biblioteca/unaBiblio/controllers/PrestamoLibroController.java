@@ -1,6 +1,6 @@
-/*package com.biblioteca.unaBiblio.controllers;
+package com.biblioteca.unaBiblio.controllers;
 
-import com.biblioteca.unaBiblio.dto.HistorialPrestamoDTO;
+
 import com.biblioteca.unaBiblio.dto.PrestamoLibroDTO;
 import com.biblioteca.unaBiblio.services.PrestamoLibroService;
 
@@ -37,7 +37,7 @@ public class PrestamoLibroController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
-    @GetMapping("/historial/{idAlumno}")
+    /*@GetMapping("/historial/{idAlumno}")
     public ResponseEntity<?> obtenerHistorialPrestamo(@PathVariable int idAlumno) {
     	
     	try {
@@ -54,7 +54,6 @@ public class PrestamoLibroController {
     	}
     	
         
-    }
+    }*/
 
 }
-*/

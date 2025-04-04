@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.models;
+package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.Entity;
@@ -25,18 +25,25 @@ public class Biblioteca {
 	//Definicion de los campos de Biblioteca
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idbiblioteca", nullable = false)
+	@Column(name = "id_biblioteca", nullable = false)
 	private int idbiblioteca;
-	
 	
 	@Column(name = "descripcion", length = 200, nullable = false)
 	private String descripcion;
 	
+	@Column(name = "direccion", length = 200, nullable = false)
+	private String direccion;
 	
-	@Column(name = "estado", nullable = false)
-	private Boolean estado;
+	@Column(name = "telefono", length = 50, nullable = false)
+	private String telefono;
+	
+	@Column(name = "email", length = 100, nullable = false)
+	private String email;
+	
+	@Column(name = "activo", nullable = false)
+	private Boolean activo;
 	
 }
-*/
+
 
 

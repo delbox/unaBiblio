@@ -1,6 +1,7 @@
-/*package com.biblioteca.unaBiblio.services;
+package com.biblioteca.unaBiblio.services;
 
 
+import com.biblioteca.unaBiblio.ResourceNotFoundException;
 import com.biblioteca.unaBiblio.dto.BibliotecaDTO;
 
 import com.biblioteca.unaBiblio.models.Biblioteca;
@@ -20,7 +21,7 @@ public class BibliotecaService {
     public List<BibliotecaDTO> getAllBibliotecas() {
         List<Biblioteca> bibliotecas = bibliotecaRepository.findAll();
         return bibliotecas.stream()
-            .map(b -> new BibliotecaDTO(b.getIdbiblioteca(), b.getDescripcion(), b.getEstado()))
+            .map(b -> new BibliotecaDTO(b.getIdbiblioteca(),b.getDescripcion(),b.getDireccion(),b.getTelefono(),b.getEmail(),b.getActivo()))
             .collect(Collectors.toList());
     }
     
@@ -30,8 +31,10 @@ public class BibliotecaService {
     	
     	//Aqui se mapea los campos del DTO a la entidad
     	biblioteca.setDescripcion(bibliotecaDTO.getDescripcion());
-    	
-    	biblioteca.setEstado(bibliotecaDTO.getEstado());
+    	biblioteca.setDireccion(bibliotecaDTO.getDireccion());
+    	biblioteca.setTelefono(bibliotecaDTO.getTelefono());
+    	biblioteca.setEmail(bibliotecaDTO.getEmail());
+    	biblioteca.setActivo(bibliotecaDTO.getActivo());
     	
     	//Guarda la entidad en el repositorio
     	Biblioteca nuevaBiblioteca = bibliotecaRepository.save(biblioteca);
@@ -47,8 +50,10 @@ public class BibliotecaService {
 
         // Actualizar los campos de la biblioteca
         bibliotecaExistente.setDescripcion(bibliotecaDTO.getDescripcion());
-        
-        bibliotecaExistente.setEstado(bibliotecaDTO.getEstado());
+        bibliotecaExistente.setDireccion(bibliotecaDTO.getDireccion());
+    	bibliotecaExistente.setTelefono(bibliotecaDTO.getTelefono());
+    	bibliotecaExistente.setEmail(bibliotecaDTO.getEmail());
+    	bibliotecaExistente.setActivo(bibliotecaDTO.getActivo());
 
         // Guardar la biblioteca actualizada en la base de datos
         Biblioteca bibliotecaActualizada = bibliotecaRepository.save(bibliotecaExistente);
@@ -70,4 +75,4 @@ public class BibliotecaService {
     	return bibliotecaRepository.findById(id)
     			.orElseThrow(() -> new ResourceNotFoundException("Biblioteca no encontrada con id: " + id));
     }
-}*/
+}

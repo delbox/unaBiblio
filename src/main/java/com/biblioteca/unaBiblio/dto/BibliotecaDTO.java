@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.dto;
+package com.biblioteca.unaBiblio.dto;
 
 
 import com.biblioteca.unaBiblio.models.Biblioteca;
@@ -21,11 +21,20 @@ public class BibliotecaDTO {
 	//@NotNull(mesage = "La facultad no puede ser nula")
     private String descripcion;
     
-    private Boolean estado;
+    private String direccion;
+    
+    private String telefono;
+    
+    private String email;
+    
+    private Boolean activo;
     
     public BibliotecaDTO(Biblioteca biblioteca) {
     	this.idbiblioteca = biblioteca.getIdbiblioteca();
     	this.descripcion = biblioteca.getDescripcion();
-    	this.estado = biblioteca.getEstado();
+    	this.direccion = biblioteca.getDireccion();
+    	this.telefono = biblioteca.getTelefono();
+    	this.email = biblioteca.getEmail();
+    	this.activo = biblioteca.getActivo();
     }
-}*/
+}

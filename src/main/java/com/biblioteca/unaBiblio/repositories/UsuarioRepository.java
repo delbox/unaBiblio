@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.repositories;
+package com.biblioteca.unaBiblio.repositories;
 
 import java.util.Optional;
 
@@ -13,12 +13,12 @@ import com.biblioteca.unaBiblio.models.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
+	
 	Optional<Usuario> findByUsuario(String usuario);
 	
-	@Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END " +
+	/*@Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END " +
 	"FROM Usuario u " + 
 	"WHERE u.idusuario = :id AND u.rol = 'ROLE_ALUMNO'")
-	boolean existeByIdAlumno(@Param("id") int id);
+	boolean existeByIdAlumno(@Param("id") int id);*/
 	
 }
-*/

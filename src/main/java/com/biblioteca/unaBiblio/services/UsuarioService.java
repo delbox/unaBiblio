@@ -1,8 +1,8 @@
-/*package com.biblioteca.unaBiblio.services;
+package com.biblioteca.unaBiblio.services;
 
 
+import com.biblioteca.unaBiblio.ResourceNotFoundException;
 import com.biblioteca.unaBiblio.dto.UsuarioDTO;
-import com.biblioteca.unaBiblio.models.Biblioteca;
 import com.biblioteca.unaBiblio.models.Rol;
 import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.repositories.UsuarioRepository;
@@ -14,19 +14,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+
 @Service
 public class UsuarioService {
 
 	@Autowired
     private UsuarioRepository usuarioRepository;
-    
-    @Autowired
-    private BibliotecaService bibliotecaService;
+	
+	
+	@Autowired
+	private RolService rolService;
+	
     
     public List<UsuarioDTO> getAllUsuarios() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
-            .map(b -> new UsuarioDTO(b.getIdusuario(),b.getNombre(), b.getApellido(), b.getUsuario(), b.getPassword(), b.getRol().name(), b.getEstado(), b.getCedula()))
+            .map(u -> new UsuarioDTO(u.getIdusuario(),u.getNombre(),u.getApellido(),u.getUsuario(),u.getPassword(),u.getActivo(),u.getRol().getIdrol()))
             .collect(Collectors.toList());
     }
     
@@ -38,10 +43,19 @@ public class UsuarioService {
     	usuario.setNombre(usuarioDTO.getNombre());
     	usuario.setApellido(usuarioDTO.getApellido());
     	usuario.setUsuario(usuarioDTO.getUsuario());
-    	usuario.setPassword(usuarioDTO.getPassword());
-    	usuario.setRol(Rol.valueOf(usuarioDTO.getRol()));
-    	usuario.setEstado(usuarioDTO.getEstado() != null ? usuarioDTO.getEstado() : true);
-    	usuario.setCedula(usuarioDTO.getCedula());
+    	
+    	//Encriptar el password antes de guardarla
+    	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    	
+    	String passwordEncriptado = passwordEncoder.encode(usuarioDTO.getPassword());
+    	
+    	usuario.setPassword(passwordEncriptado);
+    	
+    	usuario.setActivo(usuarioDTO.getActivo() != null ? usuarioDTO.getActivo() : true);
+    	
+    	Rol rol = rolService.obtenerRolPorId(usuarioDTO.getRol());
+    	usuario.setRol(rol);
+    	
     	
     	//Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(usuarioDTO.getIdBiblioteca());
     	//usuario.setBiblioteca(biblioteca);
@@ -51,11 +65,11 @@ public class UsuarioService {
     	
     	//Convierte la entidad guardada a DTO y devuelve
     	return new UsuarioDTO(nuevoUsuario);
-    }
+   }
    
    
     public UsuarioDTO actualizarUsuario(int id, UsuarioDTO usuarioDTO) {
-    	//Buscar libro por ID
+    	//Buscar usuario por ID
     	Usuario usuarioExistente = usuarioRepository.findById(id)
     			.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     	
@@ -64,11 +78,15 @@ public class UsuarioService {
     	usuarioExistente.setNombre(usuarioDTO.getNombre());
     	usuarioExistente.setApellido(usuarioDTO.getApellido());
     	usuarioExistente.setUsuario(usuarioDTO.getUsuario());
-    	usuarioExistente.setRol(Rol.valueOf(usuarioDTO.getRol()));
-    	usuarioExistente.setCedula(usuarioDTO.getCedula());
-  
-    	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(usuarioDTO.getIdBiblioteca());
-    	usuarioExistente.setBiblioteca(biblioteca);
+    	usuarioExistente.setPassword(usuarioDTO.getPassword());
+    	usuarioExistente.setActivo(usuarioDTO.getActivo());
+    	
+    	Rol rol = rolService.obtenerRolPorId(usuarioDTO.getRol());
+    	
+    	usuarioExistente.setRol(rol);
+    
+    	/*Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(usuarioDTO.getIdBiblioteca());
+    	usuarioExistente.setBiblioteca(biblioteca);*/
     	
     	//Guardar el usuario actualizado en la base de datos
     	Usuario usuarioActualizado = usuarioRepository.save(usuarioExistente);
@@ -95,7 +113,7 @@ public class UsuarioService {
 		return usuario;
 	}
     
-    public Usuario obtenerUsuarioAlumnoPorId(int id) {
+    /*public Usuario obtenerUsuarioAlumnoPorId(int id) {
 		// Busca el usuario por ID
 		Usuario usuario = usuarioRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
@@ -121,7 +139,6 @@ public class UsuarioService {
 
 		// Devuelve el usuario si todo es válido
 		return usuario;
-	}
+	}*/
 }
 
-*/
