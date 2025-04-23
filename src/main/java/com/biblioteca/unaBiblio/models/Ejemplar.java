@@ -44,4 +44,8 @@ public class Ejemplar {
     @JoinColumn(name="id_libro", nullable = false)
     private Libro libro;
 	
+	@ManyToOne
+    @JoinColumn(name="id_biblioteca")
+    private Biblioteca biblioteca;
+	
 }

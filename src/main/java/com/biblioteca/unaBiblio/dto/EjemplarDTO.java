@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 
 
 
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -23,11 +22,13 @@ public class EjemplarDTO {
     private String codigo;
     private EstadoEjemplar estado;
     private int idlibro;
+    private Integer idbiblioteca;
 
     public EjemplarDTO(Ejemplar ejemplar) {
         this.idejemplar = ejemplar.getIdejemplar();
         this.codigo = ejemplar.getCodigo();
         this.estado = ejemplar.getEstado();
         this.idlibro = ejemplar.getLibro().getIdlibro();
+        this.idbiblioteca = ejemplar.getBiblioteca().getIdbiblioteca();
     }
 }

@@ -89,6 +89,15 @@ public class PrestamoLibroService {
 		prestamoLibroRepository.delete(prestamoExistente);
 	}
 	
+	public PrestamoLibro obtenerPrestamoPorId(int id) {
+		// Busca el usuario por ID
+		PrestamoLibro prestamo = prestamoLibroRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Prestamo no encontrado con id: " + id));
+		
+		// Devuelve el usuario si todo es válido
+		return prestamo;
+	}
+	
 	
 	//Historial Prestamos
 	/*public List<HistorialPrestamoDTO> obtenerHistorialPrestamoPorAlumno(int idAlumno) {

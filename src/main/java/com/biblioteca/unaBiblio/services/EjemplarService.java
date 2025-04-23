@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.biblioteca.unaBiblio.ResourceNotFoundException;
 import com.biblioteca.unaBiblio.dto.EjemplarDTO;
+import com.biblioteca.unaBiblio.models.Biblioteca;
 import com.biblioteca.unaBiblio.models.Ejemplar;
 import com.biblioteca.unaBiblio.models.Libro;
+import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.repositories.EjemplarRepository;
 
 
@@ -23,11 +25,14 @@ public class EjemplarService {
 	@Autowired
 	private LibroService libroService;
 	
+	@Autowired
+	private BibliotecaService bibliotecaService;
+	
 	
 	public List<EjemplarDTO> getAllEjemplares() {
 		List<Ejemplar> ejemplares = ejemplarRepository.findAll();
 		return ejemplares.stream()
-				.map(e -> new EjemplarDTO(e.getIdejemplar(),e.getCodigo(),e.getEstado(),e.getLibro().getIdlibro()))
+				.map(e -> new EjemplarDTO(e.getIdejemplar(),e.getCodigo(),e.getEstado(),e.getLibro().getIdlibro(),e.getBiblioteca().getIdbiblioteca()))
 				.collect(Collectors.toList());
 	}
 	
@@ -42,12 +47,17 @@ public class EjemplarService {
 		Libro libro = libroService.obtenerLibroPorId(ejemplarDTO.getIdlibro());
 		ejemplar.setLibro(libro);
 		
+		//Si se especifica el ID de la biblioteca, usarlo, sino usar el ID 1 por defecto
+		int idBiblioteca = (ejemplarDTO.getIdbiblioteca() != null) ? ejemplarDTO.getIdbiblioteca() : 1;
+		Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(idBiblioteca);
+		ejemplar.setBiblioteca(biblioteca);
+		
 		//Guardar la entidad en el repositorio
 		Ejemplar nuevoEjemplar = ejemplarRepository.save(ejemplar);
 		
 		//Convierte la entidad guardada a DTO y devuelve
 		return new EjemplarDTO(nuevoEjemplar);
-		
+	
 	}
 	
 	public EjemplarDTO actualizarEjemplar(int id, EjemplarDTO ejemplarDTO) {
@@ -78,6 +88,15 @@ public class EjemplarService {
     	//Eliminar usuario
     	ejemplarRepository.delete(ejemplarExistente);
     	
-   } 	
+	}
+	
+   public Ejemplar obtenerEjemplarPorId(int id) {
+		// Busca el ejemplar por ID
+		Ejemplar ejemplar = ejemplarRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Ejemplar no encontrado con id: " + id));
+		
+		// Devuelve el ejemplar si todo es válido
+		return ejemplar;
+   }
 		
 }
