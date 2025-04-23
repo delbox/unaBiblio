@@ -10,6 +10,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import io.jsonwebtoken.security.Keys;
@@ -25,6 +26,9 @@ public class AuthController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // Clave secreta para firmar el token
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
@@ -37,7 +41,7 @@ public class AuthController {
                     .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
 
             // Verificar password
-            if (!usuario.getPassword().equals(request.getPassword())) {
+            if (!passwordEncoder.matches(request.getPassword(), usuario.getPassword()))  {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
                     Map.of("error", "Credenciales incorrectas", "status", HttpStatus.UNAUTHORIZED.value())
                 );
