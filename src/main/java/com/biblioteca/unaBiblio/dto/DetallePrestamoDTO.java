@@ -22,10 +22,14 @@ public class DetallePrestamoDTO {
 	private Boolean activo;
 	private int idprestamo;
 	
+	//Campos para mostrar
+	private String nombreLibro;
+	
 	public DetallePrestamoDTO(DetallePrestamo detallePrestamo) {
 		this.coddetalle = detallePrestamo.getCoddetalle();
 		this.idejemplar = detallePrestamo.getEjemplar().getIdejemplar();
 		this.activo = detallePrestamo.getActivo();
 		this.idprestamo = detallePrestamo.getPrestamo().getIdprestamo();
+		this.nombreLibro = detallePrestamo.getEjemplar().getLibro().getTitulo();
 	}
 }

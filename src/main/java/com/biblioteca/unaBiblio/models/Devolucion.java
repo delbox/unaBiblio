@@ -1,4 +1,4 @@
-/*package com.biblioteca.unaBiblio.models;
+package com.biblioteca.unaBiblio.models;
 
 
 import jakarta.persistence.*;
@@ -7,9 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Data
@@ -24,17 +23,17 @@ public class Devolucion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_devolucion", nullable = false)
-	private int idDevolucion;
+	private int iddevolucion;
 	
-	@Column(name="fecha_devolucion", length = 200)
-	private Date fechaDevolucion;
+	@OneToOne
+	@JoinColumn(name = "id_detalle", referencedColumnName = "id_detalle", nullable = false, unique = true)
+	private DetallePrestamo detalleprestamo;
+	
+	
+	@Column(name="fecha_devolucion_real", nullable = false)
+	private LocalDateTime fechadevolucionreal;
 
-    @Column(name="observaciones")
+    @Column(name="observaciones", length = 200)
     private String observaciones;
-    
-    @ManyToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name="id_prestamo", nullable = false)
-    @JsonBackReference // Evita la serialización de Prestamo al serializar Devolucion
-    private PrestamoLibro prestamo;
 	
-}*/
+}

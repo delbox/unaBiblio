@@ -1,24 +1,25 @@
-/*package com.biblioteca.unaBiblio.dto;
+package com.biblioteca.unaBiblio.dto;
 
-import java.util.Date;
+
+import java.time.LocalDateTime;
+
 
 import com.biblioteca.unaBiblio.models.Devolucion;
 
 public class DevolucionDTO {
 	
-	private int idDevolucion;
-	private Date fechaDevolucion;
+	private int iddevolucion;
+	private int iddetalle;
+	private LocalDateTime fechadevolucionreal;
 	private String observaciones;
-	private int idPrestamo;
 	
 	
 	
-	public DevolucionDTO(Devolucion devolucionLibro) {
-		this.idDevolucion = devolucionLibro.getIdDevolucion();
-		this.fechaDevolucion = devolucionLibro.getFechaDevolucion();
-		this.observaciones = devolucionLibro.getObservaciones();
-		
-		this.idPrestamo = devolucionLibro.getPrestamo().getIdPrestamo();
+	public DevolucionDTO(Devolucion devolucion) {
+		this.iddevolucion = devolucion.getIddevolucion();
+		this.iddetalle = devolucion.getDetalleprestamo().getCoddetalle();
+		this.fechadevolucionreal = devolucion.getFechadevolucionreal();
+		this.observaciones = devolucion.getObservaciones();
 		
 	}
-}*/
+}

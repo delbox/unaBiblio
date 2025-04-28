@@ -1,8 +1,11 @@
 com\biblioteca\unaBiblio\models\EstadoEjemplar.class
+com\biblioteca\unaBiblio\models\Devolucion$DevolucionBuilder.class
 com\biblioteca\unaBiblio\dto\AlumnoDTO.class
+com\biblioteca\unaBiblio\controllers\DetallePrestamoController.class
 com\biblioteca\unaBiblio\dto\StockDTO$StockDTOBuilder.class
 com\biblioteca\unaBiblio\services\AlumnoService.class
 com\biblioteca\unaBiblio\services\LibroService.class
+com\biblioteca\unaBiblio\dto\DevolucionDTO.class
 com\biblioteca\unaBiblio\models\LoginRequest.class
 com\biblioteca\unaBiblio\services\StockService.class
 com\biblioteca\unaBiblio\dto\RolDTO$RolDTOBuilder.class
@@ -38,6 +41,7 @@ com\biblioteca\unaBiblio\dto\BibliotecaDTO$BibliotecaDTOBuilder.class
 com\biblioteca\unaBiblio\services\DetallePrestamoService.class
 com\biblioteca\unaBiblio\controllers\PrestamoLibroController.class
 com\biblioteca\unaBiblio\dto\BibliotecaDTO.class
+com\biblioteca\unaBiblio\models\Devolucion.class
 com\biblioteca\unaBiblio\repositories\AlumnoRepository.class
 com\biblioteca\unaBiblio\repositories\StockRepository.class
 com\biblioteca\unaBiblio\services\BibliotecaService.class
@@ -53,6 +57,7 @@ com\biblioteca\unaBiblio\models\Usuario.class
 com\biblioteca\unaBiblio\services\EjemplarService.class
 com\biblioteca\unaBiblio\models\DetallePrestamo.class
 com\biblioteca\unaBiblio\repositories\EjemplarRepository.class
+com\biblioteca\unaBiblio\controllers\DevolucionController.class
 com\biblioteca\unaBiblio\WebConfig.class
 com\biblioteca\unaBiblio\controllers\UsuarioController.class
 com\biblioteca\unaBiblio\ResourceNotFoundException.class
@@ -66,6 +71,7 @@ com\biblioteca\unaBiblio\repositories\PrestamoLibroRepository.class
 com\biblioteca\unaBiblio\dto\LibroDTO.class
 com\biblioteca\unaBiblio\dto\AlumnoDTO$AlumnoDTOBuilder.class
 com\biblioteca\unaBiblio\models\Alumno.class
+com\biblioteca\unaBiblio\repositories\DevolucionRepository.class
 com\biblioteca\unaBiblio\services\PruebaConexionController.class
 com\biblioteca\unaBiblio\models\Biblioteca$BibliotecaBuilder.class
 com\biblioteca\unaBiblio\models\Usuario$UsuarioBuilder.class
