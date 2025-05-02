@@ -78,7 +78,13 @@ public class UsuarioService {
     	usuarioExistente.setNombre(usuarioDTO.getNombre());
     	usuarioExistente.setApellido(usuarioDTO.getApellido());
     	usuarioExistente.setUsuario(usuarioDTO.getUsuario());
-    	usuarioExistente.setPassword(usuarioDTO.getPassword());
+    	
+    	//Encriptar el password antes de guardarla
+    	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    	String passwordEncriptado = passwordEncoder.encode(usuarioDTO.getPassword());
+    	
+    	
+    	usuarioExistente.setPassword(passwordEncriptado);
     	usuarioExistente.setActivo(usuarioDTO.getActivo());
     	
     	Rol rol = rolService.obtenerRolPorId(usuarioDTO.getRol());
@@ -113,32 +119,6 @@ public class UsuarioService {
 		return usuario;
 	}
     
-    /*public Usuario obtenerUsuarioAlumnoPorId(int id) {
-		// Busca el usuario por ID
-		Usuario usuario = usuarioRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
 
-		// Verifica si el usuario tiene el rol de "Alumno"
-		if (usuario.getRol() != Rol.ROLE_ALUMNO) {
-			throw new IllegalArgumentException("El usuario con id: " + id + " no tiene el rol de Alumno");
-		}
-
-		// Devuelve el usuario si todo es válido
-		return usuario;
-	}
-
-	public Usuario obtenerUsuarioBibliotecarioPorId(int id) {
-		// Busca el usuario por ID
-		Usuario usuario = usuarioRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
-
-		// Verifica si el usuario tiene el rol de "Bibliotecario"
-		if (usuario.getRol() != Rol.ROLE_BIBLIOTECARIO) {
-			throw new IllegalArgumentException("El usuario con id: " + id + " no tiene el rol de Bibliotecario");
-		}
-
-		// Devuelve el usuario si todo es válido
-		return usuario;
-	}*/
 }
 

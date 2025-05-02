@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.biblioteca.unaBiblio.dto.UsuarioDTO;
+import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.services.UsuarioService;
 
 
@@ -51,23 +52,10 @@ public class UsuarioController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
-    /*@GetMapping("/buscar-usuario/{id}")
+    @GetMapping("/buscar/{id}")
     public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable int id) {
-        Usuario usuario = usuarioService.obtenerUsuarioAlumnoPorId(id);
+        Usuario usuario = usuarioService.obtenerUsuarioPorId(id);
         return ResponseEntity.ok(usuario);
     }
     
-    //Agregar ruta de usuario por id
-    @GetMapping("/buscar-alumno/{id}")
-    public ResponseEntity<Usuario> obtenerUsuarioAlumnoPorId(@PathVariable int id) {
-        Usuario alumno = usuarioService.obtenerUsuarioAlumnoPorId(id);
-        return ResponseEntity.ok(alumno);
-    }
-
-    @GetMapping("/buscar-bibliotecario/{id}")
-    public ResponseEntity<Usuario> obtenerUsuarioBibliotecarioPorId(@PathVariable int id) {
-        Usuario bibliotecario = usuarioService.obtenerUsuarioBibliotecarioPorId(id);
-        return ResponseEntity.ok(bibliotecario);
-    }*/
-
 }

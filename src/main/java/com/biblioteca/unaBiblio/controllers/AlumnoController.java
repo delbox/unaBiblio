@@ -2,6 +2,7 @@ package com.biblioteca.unaBiblio.controllers;
 
 
 import com.biblioteca.unaBiblio.dto.AlumnoDTO;
+import com.biblioteca.unaBiblio.models.Alumno;
 import com.biblioteca.unaBiblio.services.AlumnoService;
 
 import java.util.List;
@@ -48,5 +49,13 @@ public class AlumnoController {
         alumnoService.eliminarAlumno(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+    //Buscar alumno por ID
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Alumno> obtenerAlumnoPorId(@PathVariable int id) {
+        Alumno alumno = alumnoService.obtenerAlumnoPorId(id);
+        return ResponseEntity.ok(alumno);
+    }
+    
        
 }  
