@@ -38,6 +38,9 @@ public class Usuario {
 	@Column(name = "apellido", length = 100, nullable = false)
 	private String apellido;
 	
+	@Column(name="cedula", length = 20, unique = true, nullable = false)
+	private String cedula;
+	
 	@Column(name = "usuario", length = 100, nullable = false, unique = true)
 	private String usuario;
 	

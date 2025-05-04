@@ -16,6 +16,7 @@ public class UsuarioDTO {
     private int idusuario;
     private String nombre;
     private String apellido;
+    private String cedula;
     private String usuario;
     private String password;
     private Boolean activo;
@@ -27,6 +28,7 @@ public class UsuarioDTO {
         this.idusuario = usuario.getIdusuario();
         this.nombre = usuario.getNombre();
         this.apellido = usuario.getApellido();
+        this.cedula = usuario.getCedula();
         this.usuario = usuario.getUsuario();
         this.password = usuario.getPassword();
         this.activo = usuario.getActivo();

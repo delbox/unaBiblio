@@ -31,7 +31,7 @@ public class UsuarioService {
     public List<UsuarioDTO> getAllUsuarios() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
-            .map(u -> new UsuarioDTO(u.getIdusuario(),u.getNombre(),u.getApellido(),u.getUsuario(),u.getPassword(),u.getActivo(),u.getRol().getIdrol()))
+            .map(u -> new UsuarioDTO(u.getIdusuario(),u.getNombre(),u.getApellido(),u.getCedula(),u.getUsuario(),u.getPassword(),u.getActivo(),u.getRol().getIdrol()))
             .collect(Collectors.toList());
     }
     
@@ -42,6 +42,7 @@ public class UsuarioService {
     	
     	usuario.setNombre(usuarioDTO.getNombre());
     	usuario.setApellido(usuarioDTO.getApellido());
+    	usuario.setCedula(usuarioDTO.getCedula());
     	usuario.setUsuario(usuarioDTO.getUsuario());
     	
     	//Encriptar el password antes de guardarla
@@ -78,6 +79,7 @@ public class UsuarioService {
     	usuarioExistente.setNombre(usuarioDTO.getNombre());
     	usuarioExistente.setApellido(usuarioDTO.getApellido());
     	usuarioExistente.setUsuario(usuarioDTO.getUsuario());
+    	usuarioExistente.setCedula(usuarioDTO.getCedula());
     	
     	//Encriptar el password antes de guardarla
     	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
