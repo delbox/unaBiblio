@@ -13,23 +13,29 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class DetallePrestamoDTO {
 	
 	private int coddetalle;
 	private int idejemplar;
 	private Boolean activo;
-	private int idprestamo;
+	
+	/*private EjemplarDTO ejemplar;
+	private PrestamoLibroDTO prestamoLibro;*/
 	
 	//Campos para mostrar
 	private String nombreLibro;
+	
+	public DetallePrestamoDTO() {}
 	
 	public DetallePrestamoDTO(DetallePrestamo detallePrestamo) {
 		this.coddetalle = detallePrestamo.getCoddetalle();
 		this.idejemplar = detallePrestamo.getEjemplar().getIdejemplar();
 		this.activo = detallePrestamo.getActivo();
-		this.idprestamo = detallePrestamo.getPrestamo().getIdprestamo();
+		
+		/*this.ejemplar = new EjemplarDTO(detallePrestamo.getEjemplar());
+		this.prestamoLibro = new PrestamoLibroDTO(detallePrestamo.getPrestamo());*/
+		
 		this.nombreLibro = detallePrestamo.getEjemplar().getLibro().getTitulo();
 	}
 }

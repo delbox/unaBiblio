@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AlumnoDTO {
     private int idalumno;
+    private Boolean activo;
     private String nombre;
     private String apellido;
     private String cedula;
@@ -24,6 +25,7 @@ public class AlumnoDTO {
 
     public AlumnoDTO(Alumno alumno) {
         this.idalumno = alumno.getIdalumno();
+        this.activo = alumno.getActivo();
         this.nombre = alumno.getNombre();
         this.apellido = alumno.getApellido();
         this.cedula = alumno.getCedula();

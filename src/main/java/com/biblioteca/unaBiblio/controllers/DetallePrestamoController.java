@@ -1,4 +1,4 @@
-package com.biblioteca.unaBiblio.controllers;
+/*package com.biblioteca.unaBiblio.controllers;
 
 
 
@@ -72,4 +72,4 @@ public class DetallePrestamoController {
     				.collect(Collectors.toList());
     }
     
-}
+}*/

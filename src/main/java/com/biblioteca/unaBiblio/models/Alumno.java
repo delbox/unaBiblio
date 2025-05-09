@@ -25,11 +25,15 @@ import jakarta.persistence.Column;
 
 public class Alumno {
 	
-	//Definicion de los campos de Biblioteca
+	//Definicion de los campos de Alumno
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_alumno", nullable = false)
 	private int idalumno;
+	
+	@Builder.Default
+	@Column(name = "activo", nullable = false)
+	private Boolean activo = true;
 
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;

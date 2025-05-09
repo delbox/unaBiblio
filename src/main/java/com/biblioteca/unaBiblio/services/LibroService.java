@@ -26,7 +26,7 @@ public class LibroService {
     public List<LibroDTO> getAllLibros() {
         List<Libro> libros = libroRepository.findAll();
         return libros.stream()
-            .map(l -> new LibroDTO(l.getIdlibro(),l.getTitulo(),l.getAutor(),l.getEditorial(),l.getAniopublicacion(),l.getIsbn()))
+            .map(l -> new LibroDTO(l.getIdlibro(),l.getActivo(),l.getTitulo(),l.getAutor(),l.getEditorial(),l.getAniopublicacion(),l.getIsbn()))
             .collect(Collectors.toList());
     }
 
@@ -35,12 +35,11 @@ public class LibroService {
     	Libro libro = new Libro();
     	
     	//Aqui se mapea los campos del DTO a la entidad
+    	libro.setActivo(libroDTO.getActivo() != null ? libroDTO.getActivo() : true);
         libro.setTitulo(libroDTO.getTitulo());
         libro.setAutor(libroDTO.getAutor());
         libro.setEditorial(libroDTO.getEditorial());
         libro.setAniopublicacion(libroDTO.getAniopublicacion());
-        /*libro.setCodigoQr(libroDTO.getCodigoQr());
-        libro.setEstado(libroDTO.getEstado());*/
         libro.setIsbn(libroDTO.getIsbn());
         
         /*Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(libroDTO.getIdBiblioteca());
@@ -53,22 +52,19 @@ public class LibroService {
     	return new LibroDTO(nuevoLibro);
     }
     
-    /*public LibroDTO actualizarLibro(int id, LibroDTO libroDTO) {
+    public LibroDTO actualizarLibro(int id, LibroDTO libroDTO) {
         // Buscar la libro por ID
         Libro libroExistente = libroRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Libro no encontrado con id: " + id));
 
         // Actualizar los campos de la libro
-        libroExistente.setDescripcion(libroDTO.getDescripcion());
+        libroExistente.setActivo(libroDTO.getActivo());
+        libroExistente.setTitulo(libroDTO.getTitulo());
         libroExistente.setAutor(libroDTO.getAutor());
         libroExistente.setEditorial(libroDTO.getEditorial());
-        libroExistente.setAnioPublicacion(libroDTO.getAniopublicacion());
-        libroExistente.setCodigoQr(libroDTO.getCodigoQr());
-        libroExistente.setEstado(libroDTO.getEstado());
+        libroExistente.setAniopublicacion(libroDTO.getAniopublicacion());
+        libroExistente.setIsbn(libroDTO.getIsbn());
         
-        Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(libroDTO.getIdBiblioteca());
-        libroExistente.setBiblioteca(biblioteca);
-
         // Guardar la libro actualizada en la base de datos
         Libro libroActualizado = libroRepository.save(libroExistente);
 
@@ -83,7 +79,7 @@ public class LibroService {
 
         // Eliminar libro
         libroRepository.delete(libroExistente);
-    }*/
+    }
     
     public Libro obtenerLibroPorId(int id) {
     	return libroRepository.findById(id)

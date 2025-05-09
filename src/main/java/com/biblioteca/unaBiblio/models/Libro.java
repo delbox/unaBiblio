@@ -29,6 +29,10 @@ public class Libro {
 	@Column(name = "id_libro", nullable = false)
 	private int idlibro;
 	
+	@Builder.Default
+	@Column(name = "activo", nullable = false)
+	private Boolean activo = true;
+	
 	@Column(name="titulo", length = 200, nullable = false)
 	private String titulo;
 	
@@ -46,11 +50,7 @@ public class Libro {
     
     /*@Column(name="codigoqr", length = 50)
     private String codigoQr;
-    
-    @Column(name = "estado", nullable = false)
-	private Boolean estado;
-    
-    
+       
     //Clave foranea a la tabla de bibliotecas
     @ManyToOne
     @JoinColumn(name="idbiblioteca", nullable = false)

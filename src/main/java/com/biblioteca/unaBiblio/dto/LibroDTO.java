@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LibroDTO {
     private int idlibro;
+    private Boolean activo;
     private String titulo;
     private String autor;
     private String editorial;
@@ -25,12 +26,12 @@ public class LibroDTO {
 
     public LibroDTO(Libro libro) {
         this.idlibro =  libro.getIdlibro();
+        this.activo = libro.getActivo();
         this.titulo = libro.getTitulo();
         this.autor = libro.getAutor();
         this.editorial = libro.getEditorial();
         this.aniopublicacion = libro.getAniopublicacion();
-        /*this.codigoQr = libro.getCodigoQr();
-        this.estado = libro.getEstado();*/
+        /*this.codigoQr = libro.getCodigoQr();*/
         this.isbn = libro.getIsbn();
     }
 }

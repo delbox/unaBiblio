@@ -27,6 +27,10 @@ C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\bibliote
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\RolDTO.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\StockDTO.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\dto\UsuarioDTO.java
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\exception\BadRequestException.java
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\exception\GlobalExceptionHandler.java
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\exception\LibroInactivoException.java
+C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\exception\ResourceNotFoundException.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Alerta.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Alumno.java
 C:\Users\pablo.bogado\Desktop\Dev\unaBiblio\unaBiblio\src\main\java\com\biblioteca\unaBiblio\models\Biblioteca.java

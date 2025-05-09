@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.biblioteca.unaBiblio.ResourceNotFoundException;
 import com.biblioteca.unaBiblio.dto.EjemplarDTO;
+import com.biblioteca.unaBiblio.exception.LibroInactivoException;
 import com.biblioteca.unaBiblio.models.Biblioteca;
 import com.biblioteca.unaBiblio.models.Ejemplar;
 import com.biblioteca.unaBiblio.models.Libro;
-import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.repositories.EjemplarRepository;
 
 
@@ -45,6 +45,12 @@ public class EjemplarService {
 		ejemplar.setEstado(ejemplarDTO.getEstado());
 		
 		Libro libro = libroService.obtenerLibroPorId(ejemplarDTO.getIdlibro());
+		
+		//Validacion: el libro debe estar activo
+		if(!libro.getActivo()) {
+			throw new LibroInactivoException("El libro no se encuentra activo, no puedes agregar el ejemplar");
+		}
+		
 		ejemplar.setLibro(libro);
 		
 		//Si se especifica el ID de la biblioteca, usarlo, sino usar el ID 1 por defecto

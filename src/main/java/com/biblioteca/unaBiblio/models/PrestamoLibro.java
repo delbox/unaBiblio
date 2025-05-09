@@ -8,6 +8,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Data
@@ -18,7 +22,7 @@ import java.time.LocalDateTime;
 @Table(name = "prestamos")
 public class PrestamoLibro {
 	
-	//Definicion de los campos de Biblioteca
+	//Definicion de los campos de prestamo
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_prestamo", nullable = false)
@@ -50,8 +54,9 @@ public class PrestamoLibro {
     @JoinColumn(name="id_biblioteca", nullable = false)
     private Biblioteca biblioteca;
     
-    /*@OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference // Permite serializar Devoluciones al serializar Prestamo
-    private List<Devolucion> devoluciones = new ArrayList<>();*/
-	
+    //Añade esta relacion para cargar tambien los detalles en GET
+    @OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<DetallePrestamo> detalles = new ArrayList<>();
+    
 }

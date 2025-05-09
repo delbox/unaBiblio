@@ -2,17 +2,27 @@ package com.biblioteca.unaBiblio.services;
 
 
 import com.biblioteca.unaBiblio.ResourceNotFoundException;
+import com.biblioteca.unaBiblio.dto.DetallePrestamoDTO;
 import com.biblioteca.unaBiblio.dto.PrestamoLibroDTO;
+import com.biblioteca.unaBiblio.exception.BadRequestException;
 import com.biblioteca.unaBiblio.models.Alumno;
 import com.biblioteca.unaBiblio.models.Biblioteca;
+import com.biblioteca.unaBiblio.models.DetallePrestamo;
+import com.biblioteca.unaBiblio.models.Ejemplar;
+import com.biblioteca.unaBiblio.models.EstadoEjemplar;
 import com.biblioteca.unaBiblio.models.EstadoPrestamo;
+import com.biblioteca.unaBiblio.models.Libro;
 import com.biblioteca.unaBiblio.models.PrestamoLibro;
+import com.biblioteca.unaBiblio.models.Stock;
 import com.biblioteca.unaBiblio.models.TipoPrestamo;
 import com.biblioteca.unaBiblio.models.Usuario;
+import com.biblioteca.unaBiblio.repositories.DetallePrestamoRepository;
+import com.biblioteca.unaBiblio.repositories.EjemplarRepository;
 import com.biblioteca.unaBiblio.repositories.PrestamoLibroRepository;
-
+import com.biblioteca.unaBiblio.repositories.StockRepository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +45,17 @@ public class PrestamoLibroService {
 
     @Autowired
     private BibliotecaService bibliotecaService;
+    
+    @Autowired EjemplarService ejemplarService;
+    
+    @Autowired
+    private DetallePrestamoRepository detallePrestamoRepository;
+    
+    @Autowired
+    private StockRepository stockRepository;
+    
+    @Autowired
+    private EjemplarRepository ejemplarRepository;
     
     public List<PrestamoLibroDTO> getAllPrestamos(){
         List<PrestamoLibro> prestamos = prestamoLibroRepository.findAll();
@@ -64,30 +85,74 @@ public class PrestamoLibroService {
     	
     	prestamoLibro.setEstadoprestamo(EstadoPrestamo.ACTIVO);
     	
+    	//Validacion de alumno
     	Alumno alumno = alumnoService.obtenerAlumnoPorId(prestamoLibroDTO.getIdalumno());
+    	if(alumno.getActivo() == null || !alumno.getActivo()) {
+    		throw new BadRequestException("El alumno no esta activo");
+    	}
+    	
+    	//Validacion de usuario
     	Usuario usuario = usuarioService.obtenerUsuarioPorId(prestamoLibroDTO.getIdusuario());
+    	if(usuario.getActivo() == null || !usuario.getActivo()) {
+    		throw new BadRequestException("El usuario no esta activo");
+    	}
+    	
     	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(prestamoLibroDTO.getIdbiblioteca());
     	
     	prestamoLibro.setAlumno(alumno);
     	prestamoLibro.setUsuario(usuario);
     	prestamoLibro.setBiblioteca(biblioteca);
     	
-    	//Guarda la entidad en el repositorio
+    	//Guarda la cabecera del prestamo
     	PrestamoLibro nuevoPrestamoLibro = prestamoLibroRepository.save(prestamoLibro);
+    	
+    	//Guardar los detalles
+    	if(prestamoLibroDTO.getDetalles() != null) {
+    		List<DetallePrestamo> listaDetalles = new ArrayList<>();
+    		for (DetallePrestamoDTO detalleDTO : prestamoLibroDTO.getDetalles()) {
+    			DetallePrestamo detalle = new DetallePrestamo();
+    			Ejemplar ejemplar = ejemplarService.obtenerEjemplarPorId(detalleDTO.getIdejemplar());
+    			//Validar que el ejemplar este disponible
+    	    	if(ejemplar.getEstado() != EstadoEjemplar.DISPONIBLE) {
+    	    		throw new IllegalStateException("El ejemplar no está disponible.");
+    	    	}
+    	    	
+    	    	//Validar que haya stock del libro en la biblioteca
+    	    	Libro libro = ejemplar.getLibro();
+    	    	Biblioteca bibliotecaEjemplar = ejemplar.getBiblioteca();
+    	    	
+    	    	//Consultar el stock
+    	    	Stock stockLibro = stockRepository.findByLibroAndBiblioteca(libro, biblioteca)
+    	    					.orElseThrow(() -> new RuntimeException("No se encontró el stock del libro en esta biblioteca"));
+    	    	
+    	    	
+    	    	//Contar cuantos ejemplares de ese libro estan disponibles
+    	    	int ejemplaresDisponibles = ejemplarRepository.countByLibroAndBibliotecaAndEstado(libro, bibliotecaEjemplar,EstadoEjemplar.DISPONIBLE);
+    	    	
+    	    	if( ejemplaresDisponibles <= 0 ) {
+    	    		throw new IllegalStateException("No hay stock disponible para este libro en esta biblioteca.");
+    	    	}
+    			detalle.setEjemplar(ejemplar);
+    			detalle.setActivo(true); //siempre inicia en true
+    			detalle.setPrestamo(nuevoPrestamoLibro);
+    			detallePrestamoRepository.save(detalle);
+    			listaDetalles.add(detalle);
+    		}
+    		nuevoPrestamoLibro.setDetalles(listaDetalles);
+    	}
     	
     	//Convierte la entidad guardada a DTO y devuelve
     	return new PrestamoLibroDTO(nuevoPrestamoLibro);
-    	
     }
 
-	public void eliminarPrestamo(int id) {
+	/*public void eliminarPrestamo(int id) {
 		// Eliminar prestamo por ID
 		PrestamoLibro prestamoExistente = prestamoLibroRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Prestamo no encontrado con id: " + id));
 
 		// Eliminar libro
 		prestamoLibroRepository.delete(prestamoExistente);
-	}
+	}*/
 	
 	public PrestamoLibro obtenerPrestamoPorId(int id) {
 		// Busca el usuario por ID

@@ -27,7 +27,7 @@ public class AlumnoService {
     	List<Alumno> alumnos = alumnoRepository.findAll();
     	return alumnos.stream()
     		   .map(
-    		    a-> new AlumnoDTO(a.getIdalumno(),a.getNombre(),a.getApellido(),a.getCedula(),a.getEmail(),a.getTelefono(),a.getBiblioteca().getIdbiblioteca()))
+    		    a-> new AlumnoDTO(a.getIdalumno(),a.getActivo(),a.getNombre(),a.getApellido(),a.getCedula(),a.getEmail(),a.getTelefono(),a.getBiblioteca().getIdbiblioteca()))
     		   	.collect(Collectors.toList());
     }
     
@@ -35,6 +35,7 @@ public class AlumnoService {
     public AlumnoDTO agregarAlumno(AlumnoDTO alumnoDTO) {
     	Alumno alumno = new Alumno();
     	
+    	alumno.setActivo(alumnoDTO.getActivo() != null ? alumnoDTO.getActivo() : true);
     	alumno.setNombre(alumnoDTO.getNombre());
     	alumno.setApellido(alumnoDTO.getApellido());
     	alumno.setCedula(alumnoDTO.getCedula());
@@ -61,6 +62,7 @@ public class AlumnoService {
     	//Actualizar los campos del Alumno
     	Biblioteca biblioteca = bibliotecaService.obtenerBibliotecaPorId(alumnoDTO.getIdbiblioteca());
     	
+    	alumnoExistente.setActivo(alumnoDTO.getActivo());
     	alumnoExistente.setNombre(alumnoDTO.getNombre());
     	alumnoExistente.setApellido(alumnoDTO.getApellido());
     	alumnoExistente.setCedula(alumnoDTO.getCedula());

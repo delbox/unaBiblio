@@ -13,6 +13,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 import jakarta.persistence.Column;
 
 
@@ -25,7 +29,7 @@ import jakarta.persistence.Column;
 @Table(name = "detalle_prestamo")
 public class DetallePrestamo {
 	
-	//Definicion de los campos de Biblioteca
+	//Definicion de los campos de detalle prestamo
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_detalle", nullable = false)
@@ -41,6 +45,7 @@ public class DetallePrestamo {
 	
 	@ManyToOne
     @JoinColumn(name="id_prestamo", nullable = false)
+	@JsonBackReference
     private PrestamoLibro prestamo;
 	
 }
