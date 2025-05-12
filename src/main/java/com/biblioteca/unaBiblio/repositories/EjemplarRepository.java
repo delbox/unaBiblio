@@ -21,5 +21,9 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar,Integer> {
 	
 	int countByLibroAndBibliotecaAndEstado(Libro libro, Biblioteca biblioteca, EstadoEjemplar estado);
 	
+	//Ejemplares disponibles por id libro
 	List<Ejemplar> findByLibro_IdlibroAndEstadoOrderByIdejemplarAsc(int idLibro, EstadoEjemplar estado);
+	
+	//Ejemplares por id libro
+	List<Ejemplar> findByLibro_Idlibro(int idLibro);
 }

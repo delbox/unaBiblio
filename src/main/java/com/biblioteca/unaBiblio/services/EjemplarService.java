@@ -106,7 +106,15 @@ public class EjemplarService {
 		return ejemplar;
    }
    
-   //Obtener ejemplares disponibles por id libro
+   //Obtener todos los ejemplares por id libro(sin importar su estado)
+   public List<EjemplarDTO> obtenerEjemplaresPorLibro(int idlibro) {
+	   List<Ejemplar> ejemplaresPorLibro = ejemplarRepository.findByLibro_Idlibro(idlibro);
+	   return ejemplaresPorLibro.stream()
+		        .map(e -> new EjemplarDTO(e)) 
+		        .collect(Collectors.toList()); 
+   }
+   
+ //Obtener ejemplares disponibles por id libro
    public List<EjemplarDTO> obtenerEjemplaresDisponiblesPorLibro(int idlibro) {
 	   List<Ejemplar> ejemplaresDisponibles = ejemplarRepository.findByLibro_IdlibroAndEstadoOrderByIdejemplarAsc(idlibro, EstadoEjemplar.DISPONIBLE);
 	   return ejemplaresDisponibles.stream()

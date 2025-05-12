@@ -53,6 +53,13 @@ public class EjemplarController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
+  //Obtener ejemplares por id libro
+    @GetMapping("/{idlibro}")
+    public ResponseEntity<List<EjemplarDTO>> obtenerEjemplares(@PathVariable int idlibro) {
+    	List<EjemplarDTO> ejemplares = ejemplarService.obtenerEjemplaresPorLibro(idlibro);
+    	return ResponseEntity.ok(ejemplares);
+    }
+    
     //Obtener ejemplares disponibles por id libro
     @GetMapping("/disponibles/{idlibro}")
     public ResponseEntity<List<EjemplarDTO>> obtenerEjemplaresDisponibles(@PathVariable int idlibro) {
