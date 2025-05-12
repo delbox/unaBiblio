@@ -11,6 +11,7 @@ import com.biblioteca.unaBiblio.dto.EjemplarDTO;
 import com.biblioteca.unaBiblio.exception.LibroInactivoException;
 import com.biblioteca.unaBiblio.models.Biblioteca;
 import com.biblioteca.unaBiblio.models.Ejemplar;
+import com.biblioteca.unaBiblio.models.EstadoEjemplar;
 import com.biblioteca.unaBiblio.models.Libro;
 import com.biblioteca.unaBiblio.repositories.EjemplarRepository;
 
@@ -103,6 +104,14 @@ public class EjemplarService {
 		
 		// Devuelve el ejemplar si todo es válido
 		return ejemplar;
+   }
+   
+   //Obtener ejemplares disponibles por id libro
+   public List<EjemplarDTO> obtenerEjemplaresDisponiblesPorLibro(int idlibro) {
+	   List<Ejemplar> ejemplaresDisponibles = ejemplarRepository.findByLibro_IdlibroAndEstadoOrderByIdejemplarAsc(idlibro, EstadoEjemplar.DISPONIBLE);
+	   return ejemplaresDisponibles.stream()
+		        .map(e -> new EjemplarDTO(e)) 
+		        .collect(Collectors.toList()); 
    }
 		
 }

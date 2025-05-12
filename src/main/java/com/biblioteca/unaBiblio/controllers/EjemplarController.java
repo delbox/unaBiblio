@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.biblioteca.unaBiblio.dto.EjemplarDTO;
+import com.biblioteca.unaBiblio.models.Ejemplar;
 import com.biblioteca.unaBiblio.services.EjemplarService;
 
 
@@ -50,6 +51,13 @@ public class EjemplarController {
     public ResponseEntity<Void> eliminarEjemplar(@PathVariable int id) {
         ejemplarService.eliminarEjemplar(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    //Obtener ejemplares disponibles por id libro
+    @GetMapping("/disponibles/{idlibro}")
+    public ResponseEntity<List<EjemplarDTO>> obtenerEjemplaresDisponibles(@PathVariable int idlibro) {
+    	List<EjemplarDTO> ejemplares = ejemplarService.obtenerEjemplaresDisponiblesPorLibro(idlibro);
+    	return ResponseEntity.ok(ejemplares);
     }
 	
 }
