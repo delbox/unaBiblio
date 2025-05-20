@@ -21,6 +21,8 @@ import com.biblioteca.unaBiblio.repositories.EjemplarRepository;
 import com.biblioteca.unaBiblio.repositories.PrestamoLibroRepository;
 import com.biblioteca.unaBiblio.repositories.StockRepository;
 
+import jakarta.transaction.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +93,12 @@ public class PrestamoLibroService {
     		throw new BadRequestException("El alumno no esta activo");
     	}
     	
+    	//Validacion de prestamos vencidos
+		List<PrestamoLibro> prestamosVencidos = prestamoLibroRepository.findByPrestamosVencidosPorAlumno(prestamoLibroDTO.getIdalumno());
+		if(!prestamosVencidos.isEmpty()) {
+			throw new BadRequestException("El alumno tiene préstamos vencidos y no puede realizar un nuevo préstamo");
+		}
+		
     	//Validacion de usuario
     	Usuario usuario = usuarioService.obtenerUsuarioPorId(prestamoLibroDTO.getIdusuario());
     	if(usuario.getActivo() == null || !usuario.getActivo()) {
@@ -144,15 +152,35 @@ public class PrestamoLibroService {
     	//Convierte la entidad guardada a DTO y devuelve
     	return new PrestamoLibroDTO(nuevoPrestamoLibro);
     }
-
-	/*public void eliminarPrestamo(int id) {
+	
+	@Transactional
+	public void eliminarPrestamo(int id) {
 		// Eliminar prestamo por ID
-		PrestamoLibro prestamoExistente = prestamoLibroRepository.findById(id)
+		PrestamoLibro prestamo = prestamoLibroRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Prestamo no encontrado con id: " + id));
+		
+		//Iterar sobre los detalles y actualizar el estado de los ejemplares
+		for(DetallePrestamo detalle : prestamo.getDetalles()) {
+			Ejemplar ejemplar = detalle.getEjemplar();
+			
+			//1. Cambiar estado del ejemplar a DISPONIBLE
+			ejemplar.setEstado(EstadoEjemplar.DISPONIBLE);
+			ejemplarRepository.save(ejemplar);
+			
+			//2. Sumar 1 al stock segun libro y biblioteca
+			int idLibro = ejemplar.getLibro().getIdlibro();
+			int idBiblioteca = ejemplar.getBiblioteca().getIdbiblioteca();
+			
+			Stock stockBiblioteca = stockRepository.findByLibro_IdlibroAndBiblioteca_Idbiblioteca(idLibro,idBiblioteca)
+									.orElseThrow(() -> new ResourceNotFoundException("Stock no encontrado para libro ID "+ idLibro + "en la biblioteca "+idBiblioteca));
+			stockBiblioteca.setCantidad(stockBiblioteca.getCantidad() + 1);
+			stockRepository.save(stockBiblioteca);
+		}
 
-		// Eliminar libro
-		prestamoLibroRepository.delete(prestamoExistente);
-	}*/
+		// Eliminar prestamo y detalle
+		prestamoLibroRepository.delete(prestamo);
+	}
+	
 	
 	public PrestamoLibro obtenerPrestamoPorId(int id) {
 		// Busca el usuario por ID

@@ -18,4 +18,6 @@ import com.biblioteca.unaBiblio.models.Stock;
 @Repository
 public interface StockRepository extends JpaRepository<Stock,Integer> {
 	Optional<Stock> findByLibroAndBiblioteca(Libro libro, Biblioteca biblioteca);
+	
+	Optional<Stock> findByLibro_IdlibroAndBiblioteca_Idbiblioteca(int idLibro, int idBiblioteca);
 }

@@ -3,7 +3,6 @@ package com.biblioteca.unaBiblio.controllers;
 
 import com.biblioteca.unaBiblio.dto.PrestamoLibroDTO;
 import com.biblioteca.unaBiblio.models.PrestamoLibro;
-import com.biblioteca.unaBiblio.models.Usuario;
 import com.biblioteca.unaBiblio.services.PrestamoLibroService;
 
 import java.util.List;
@@ -33,11 +32,11 @@ public class PrestamoLibroController {
     	return new ResponseEntity<>(nuevoPrestamo,HttpStatus.CREATED);
     }
 
-    /*@DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> eliminarPrestamo(@PathVariable int id) {
         prestamoLibroService.eliminarPrestamo(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }*/
+    }
     
     @GetMapping("/buscar/{id}")
     public ResponseEntity<PrestamoLibro> obtenerPrestamoPorId(@PathVariable int id) {
