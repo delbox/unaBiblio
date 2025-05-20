@@ -44,6 +44,12 @@ public class PrestamoLibroController {
         return ResponseEntity.ok(prestamoLibro);
     }
     
+    /*@GetMapping("/vencidos")
+    public ResponseEntity<String> verificarPrestamosVencidos() {
+    	prestamoLibroService.actualizarPrestamosVencidos();
+    	return ResponseEntity.ok("Prestamos vencidos actualizados correctamente");
+    }*/
+    
     
     
     /*@GetMapping("/historial/{idAlumno}")

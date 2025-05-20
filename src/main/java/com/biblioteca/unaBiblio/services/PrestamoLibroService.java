@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 
@@ -96,7 +97,7 @@ public class PrestamoLibroService {
     	//Validacion de prestamos vencidos
 		List<PrestamoLibro> prestamosVencidos = prestamoLibroRepository.findByPrestamosVencidosPorAlumno(prestamoLibroDTO.getIdalumno());
 		if(!prestamosVencidos.isEmpty()) {
-			throw new BadRequestException("El alumno tiene préstamos vencidos y no puede realizar un nuevo préstamo");
+			throw new BadRequestException("El alumno tiene préstamo vencido y no puede realizar un nuevo préstamo");
 		}
 		
     	//Validacion de usuario
@@ -189,6 +190,24 @@ public class PrestamoLibroService {
 		
 		// Devuelve el usuario si todo es válido
 		return prestamo;
+	}
+	
+	
+	//Buscar prestamo vencidos(tarea programada)
+	@SuppressWarnings("unlikely-arg-type")
+	@Transactional
+	@Scheduled(cron = "0 0 0 * * *", zone = "America/Asuncion") //Ejecuta todos los dias a las 00:00 HS
+	public void actualizarPrestamosVencidos() {
+		List<PrestamoLibro> prestamosVencidos = prestamoLibroRepository.buscarPrestamosVencidos();
+		
+		for(PrestamoLibro prestamo : prestamosVencidos) {
+			if(!"VENCIDO".equals(prestamo.getEstadoprestamo())) {
+				prestamo.setEstadoprestamo(EstadoPrestamo.VENCIDO);
+			}
+		}
+		prestamoLibroRepository.saveAll(prestamosVencidos);
+		
+		System.out.println("Tarea programada ejecutada con exito");
 	}
 	
 	
