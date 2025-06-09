@@ -155,14 +155,21 @@ public class PrestamoLibroService {
     }
 	
 	@Transactional
-	public void eliminarPrestamo(int id) {
-		// Eliminar prestamo por ID
+	public void cancelarPrestamo(int id) {
+		//Busca el prestamo
 		PrestamoLibro prestamo = prestamoLibroRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Prestamo no encontrado con id: " + id));
+		
+		//Solo cancelar si no esta ya cancelado o devuelto
+		if(prestamo.getEstadoprestamo() == EstadoPrestamo.CANCELADO || prestamo.getEstadoprestamo() == EstadoPrestamo.DEVUELTO) {
+			throw new BadRequestException("El préstamo ya está cancelado o devuelto");
+		}
 		
 		//Iterar sobre los detalles y actualizar el estado de los ejemplares
 		for(DetallePrestamo detalle : prestamo.getDetalles()) {
 			Ejemplar ejemplar = detalle.getEjemplar();
+			
+			detalle.setActivo(false);
 			
 			//1. Cambiar estado del ejemplar a DISPONIBLE
 			ejemplar.setEstado(EstadoEjemplar.DISPONIBLE);
@@ -178,8 +185,9 @@ public class PrestamoLibroService {
 			stockRepository.save(stockBiblioteca);
 		}
 
-		// Eliminar prestamo y detalle
-		prestamoLibroRepository.delete(prestamo);
+		//Cambiar el estado del prestamo a CANCELADO
+		prestamo.setEstadoprestamo(EstadoPrestamo.CANCELADO);
+		prestamoLibroRepository.save(prestamo);
 	}
 	
 	

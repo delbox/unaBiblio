@@ -32,10 +32,10 @@ public class PrestamoLibroController {
     	return new ResponseEntity<>(nuevoPrestamo,HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Void> eliminarPrestamo(@PathVariable int id) {
-        prestamoLibroService.eliminarPrestamo(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @PutMapping("/cancelar/{id}")
+    public ResponseEntity<Void> cancelarPrestamo(@PathVariable int id) {
+        prestamoLibroService.cancelarPrestamo(id);
+        return ResponseEntity.noContent().build();
     }
     
     @GetMapping("/buscar/{id}")
