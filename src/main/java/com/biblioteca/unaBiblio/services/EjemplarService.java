@@ -1,7 +1,9 @@
 package com.biblioteca.unaBiblio.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,9 @@ import com.biblioteca.unaBiblio.models.Biblioteca;
 import com.biblioteca.unaBiblio.models.Ejemplar;
 import com.biblioteca.unaBiblio.models.EstadoEjemplar;
 import com.biblioteca.unaBiblio.models.Libro;
+import com.biblioteca.unaBiblio.models.Stock;
 import com.biblioteca.unaBiblio.repositories.EjemplarRepository;
+import com.biblioteca.unaBiblio.repositories.StockRepository;
 
 
 
@@ -28,6 +32,9 @@ public class EjemplarService {
 	
 	@Autowired
 	private BibliotecaService bibliotecaService;
+	
+	@Autowired
+	private StockRepository stockRepository;
 	
 	
 	public List<EjemplarDTO> getAllEjemplares() {
@@ -62,9 +69,23 @@ public class EjemplarService {
 		//Guardar la entidad en el repositorio
 		Ejemplar nuevoEjemplar = ejemplarRepository.save(ejemplar);
 		
+		//Actualizar el stock de la biblioteca
+		Optional<Stock> stockOpt = stockRepository.findByLibroAndBiblioteca(libro, biblioteca);
+		if(stockOpt.isPresent()) {
+			Stock stock = stockOpt.get();
+			stock.setCantidad(stock.getCantidad() + 1);
+			stockRepository.save(stock);
+		} else {
+			Stock nuevoStock = Stock.builder()
+					.libro(libro)
+					.biblioteca(biblioteca)
+					.cantidad(1)
+					.build();
+			stockRepository.save(nuevoStock);
+		}
+		
 		//Convierte la entidad guardada a DTO y devuelve
 		return new EjemplarDTO(nuevoEjemplar);
-	
 	}
 	
 	public EjemplarDTO actualizarEjemplar(int id, EjemplarDTO ejemplarDTO) {
