@@ -5,6 +5,7 @@ import com.biblioteca.unaBiblio.models.DetallePrestamo;
 import com.biblioteca.unaBiblio.models.Devolucion;
 import com.biblioteca.unaBiblio.models.Ejemplar;
 import com.biblioteca.unaBiblio.models.EstadoEjemplar;
+import com.biblioteca.unaBiblio.models.EstadoPrestamo;
 import com.biblioteca.unaBiblio.models.Libro;
 import com.biblioteca.unaBiblio.models.PrestamoLibro;
 import com.biblioteca.unaBiblio.models.Stock;
@@ -110,6 +111,17 @@ public class DevolucionController {
     	
     	//4- Eliminar la devolucion o bien usar un campo anulado(de forma opcional)
     	devolucionRepository.delete(devolucion);
+    	
+    	//5- Actualizar estado del prestamo a ACTIVO si al menos un detalle esta activo
+    	PrestamoLibro prestamo = detalle.getPrestamo();
+    	
+    	boolean tieneEjemplaresActivos = prestamo.getDetalles().stream()
+    			.anyMatch(d -> d.getActivo());
+    	
+    	if(tieneEjemplaresActivos) {
+    		prestamo.setEstadoprestamo(EstadoPrestamo.ACTIVO);
+    		prestamoLibroRepository.save(prestamo);
+    	}
     	
     	return ResponseEntity.ok("Devolucion cancelada y revertida correctamente");
     	
