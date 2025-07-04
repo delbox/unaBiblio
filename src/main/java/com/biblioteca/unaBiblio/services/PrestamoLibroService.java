@@ -190,7 +190,7 @@ public class PrestamoLibroService {
 		prestamoLibroRepository.save(prestamo);
 	}
 	
-	
+	//@Transactional
 	public PrestamoLibro obtenerPrestamoPorId(int id) {
 		// Busca el usuario por ID
 		PrestamoLibro prestamo = prestamoLibroRepository.findById(id)

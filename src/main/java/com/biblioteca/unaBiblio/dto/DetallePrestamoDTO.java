@@ -26,6 +26,9 @@ public class DetallePrestamoDTO {
 	//Campos para mostrar
 	private String nombreLibro;
 	
+	//Devolucion
+	private DevolucionDTO devolucion;
+	
 	public DetallePrestamoDTO() {}
 	
 	public DetallePrestamoDTO(DetallePrestamo detallePrestamo) {
@@ -37,5 +40,9 @@ public class DetallePrestamoDTO {
 		this.prestamoLibro = new PrestamoLibroDTO(detallePrestamo.getPrestamo());*/
 		
 		this.nombreLibro = detallePrestamo.getEjemplar().getLibro().getTitulo();
+		
+		/*if (detallePrestamo.getDevolucion() != null) {
+			this.devolucion = new DevolucionDTO(detallePrestamo.getDevolucion());
+		}*/
 	}
 }

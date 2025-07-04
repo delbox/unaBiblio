@@ -79,52 +79,52 @@ public class DevolucionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(devolucion);
     }
     
-    @PutMapping("/cancelar/{idDevolucion}")
-    public ResponseEntity<?> cancelarDevolucion(@PathVariable Integer idDevolucion) {
-    	Optional<Devolucion> devolucionOpt = devolucionRepository.findById(idDevolucion);
-    	
-    	if(!devolucionOpt.isPresent()) {
-    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Devolucion no encontrada con ID: " + idDevolucion);
-    	}
-    	
-    	Devolucion devolucion = devolucionOpt.get();
-    	DetallePrestamo detalle = devolucion.getDetalleprestamo();
-    	Ejemplar ejemplar = detalle.getEjemplar();
-    	Libro libro = ejemplar.getLibro();
-    	Biblioteca biblioteca = ejemplar.getBiblioteca();
-    	
-    	//1- Revertir estado del ejemplar a PRESTADO
-    	ejemplar.setEstado(EstadoEjemplar.PRESTADO);
-    	ejemplarRepository.save(ejemplar);
-    	
-    	//2- Marcar el detalle del prestamo como activo nuevamente
-    	detalle.setActivo(true);
-    	detallePrestamoRepository.save(detalle);
-    	
-    	//3- Restar 1 al stock
-    	Optional<Stock> stockOpt = stockRepository.findByLibroAndBiblioteca(libro, biblioteca);
-    	if(stockOpt.isPresent()) {
-    		Stock stock = stockOpt.get();
-    		stock.setCantidad(stock.getCantidad() - 1);
-    		stockRepository.save(stock);
-    	}
-    	
-    	//4- Eliminar la devolucion o bien usar un campo anulado(de forma opcional)
-    	devolucionRepository.delete(devolucion);
-    	
-    	//5- Actualizar estado del prestamo a ACTIVO si al menos un detalle esta activo
-    	PrestamoLibro prestamo = detalle.getPrestamo();
-    	
-    	boolean tieneEjemplaresActivos = prestamo.getDetalles().stream()
-    			.anyMatch(d -> d.getActivo());
-    	
-    	if(tieneEjemplaresActivos) {
-    		prestamo.setEstadoprestamo(EstadoPrestamo.ACTIVO);
-    		prestamoLibroRepository.save(prestamo);
-    	}
-    	
-    	return ResponseEntity.ok("Devolucion cancelada y revertida correctamente");
-    	
+    @PutMapping("/cancelar/{idDetalle}")
+    public ResponseEntity<?> cancelarDevolucion(@PathVariable Integer idDetalle) {
+        // Buscar devolución por ID del detalle
+        Optional<Devolucion> devolucionOpt = devolucionRepository.findByDetalleprestamoCoddetalle(idDetalle);
+        
+        if (!devolucionOpt.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("No se encontró una devolución registrada para el detalle con ID: " + idDetalle);
+        }
+        
+        Devolucion devolucion = devolucionOpt.get();
+        DetallePrestamo detalle = devolucion.getDetalleprestamo();
+        Ejemplar ejemplar = detalle.getEjemplar();
+        Libro libro = ejemplar.getLibro();
+        Biblioteca biblioteca = ejemplar.getBiblioteca();
+
+        // 1. Revertir estado del ejemplar
+        ejemplar.setEstado(EstadoEjemplar.PRESTADO);
+        ejemplarRepository.save(ejemplar);
+
+        // 2. Reactivar detalle de préstamo
+        detalle.setActivo(true);
+        detallePrestamoRepository.save(detalle);
+
+        // 3. Actualizar stock
+        Optional<Stock> stockOpt = stockRepository.findByLibroAndBiblioteca(libro, biblioteca);
+        if (stockOpt.isPresent()) {
+            Stock stock = stockOpt.get();
+            stock.setCantidad(stock.getCantidad() - 1);
+            stockRepository.save(stock);
+        }
+
+        // 4. Eliminar la devolución
+        devolucionRepository.delete(devolucion);
+
+        // 5. Cambiar estado del préstamo si es necesario
+        PrestamoLibro prestamo = detalle.getPrestamo();
+        boolean tieneEjemplaresActivos = prestamo.getDetalles().stream()
+            .anyMatch(DetallePrestamo::getActivo);
+
+        if (tieneEjemplaresActivos) {
+            prestamo.setEstadoprestamo(EstadoPrestamo.ACTIVO);
+            prestamoLibroRepository.save(prestamo);
+        }
+
+        return ResponseEntity.ok("Devolución cancelada correctamente.");
     }
     
 }
